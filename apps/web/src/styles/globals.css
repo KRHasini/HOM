@@ -1,0 +1,315 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@custom-variant reduced-motion (@media (prefers-reduced-motion: reduce));
+@custom-variant pointer-fine (@media (hover: hover) and (pointer: fine));
+
+/* Map design tokens into Tailwind so utilities never carry raw values. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-raised: var(--ink-raised);
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-bone: var(--bone);
+  --color-muted: var(--text-muted);
+  --color-muted-dark: var(--text-muted-dark);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-error-dark: var(--error-on-dark);
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-on-dark: var(--accent-on-dark);
+
+  --font-display: var(--font-display-stack);
+  --font-serif: var(--font-serif-stack);
+  --font-sans: var(--font-sans-stack);
+  --font-script: var(--font-script-stack);
+
+  --text-hero: var(--text-hero);
+  --text-hero--line-height: 0.86;
+  --text-section: var(--text-section);
+  --text-section--line-height: 0.9;
+  --text-title: var(--text-title);
+  --text-title--line-height: 0.95;
+  --text-lede: var(--text-lede);
+  --text-lede--line-height: 1.35;
+  --text-body: var(--text-body);
+  --text-body--line-height: var(--leading-body);
+
+  --ease-expo: var(--ease-expo);
+  --ease-in-out-hom: var(--ease-in-out);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-scroll-cue: scroll-cue 2.2s var(--ease-in-out) infinite;
+  --animate-mesh: mesh-drift 18s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes mesh-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(6%, 5%, 0) scale(1.15) rotate(8deg);
+  }
+}
+
+/* ----------------------------------------------------------------- base */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    background-color: var(--ink);
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--ink);
+    color: var(--ivory);
+    font-family: var(--font-sans-stack);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--gold);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  [data-surface="light"] :focus-visible {
+    outline-color: var(--gold-deep);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Lenis smooth-scroll integration */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  /* The custom cursor replaces the arrow on fine pointers only — never on touch. */
+  @media (hover: hover) and (pointer: fine) {
+    html.has-custom-cursor,
+    html.has-custom-cursor a,
+    html.has-custom-cursor button,
+    html.has-custom-cursor [role="button"],
+    html.has-custom-cursor label {
+      cursor: none;
+    }
+    html.has-custom-cursor :is(input, textarea, select, [contenteditable]) {
+      cursor: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------ utilities */
+@utility container-hom {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility section-y {
+  padding-block: var(--section-y);
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans-stack);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+@utility display {
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+
+@utility text-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+@utility surface-ink {
+  background-color: var(--ink);
+  color: var(--ivory);
+}
+
+@utility surface-ink-soft {
+  background-color: var(--ink-soft);
+  color: var(--ivory);
+}
+
+@utility surface-ivory {
+  background-color: var(--ivory);
+  color: var(--ink);
+}
+
+/* Subtle film grain over dark sections (3–5% opacity). The host must be positioned. */
+@utility grain {
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-image: var(--noise);
+    background-size: 180px 180px;
+    opacity: 0.045;
+  }
+}
+
+/* Duotone (ink → gold) treatment for low-quality or placeholder imagery. Host must be positioned. */
+@utility duotone {
+  isolation: isolate;
+  & img,
+  & video {
+    filter: grayscale(1) contrast(1.15) brightness(0.92);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(160deg, rgb(217 178 106 / 0.55), rgb(11 11 12 / 0.4));
+    mix-blend-mode: multiply;
+  }
+}
+
+/* Editorial treatment: high contrast, slightly desaturated, warm highlights. */
+@utility editorial {
+  filter: saturate(0.78) contrast(1.08) sepia(0.08);
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--hairline);
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid var(--hairline);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Animated underline for ghost links and nav items. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 450ms var(--ease-expo);
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+}
