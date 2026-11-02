@@ -1,0 +1,31 @@
+{
+  "name": "hom-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "House of Movements digital platform — Phase 1 marketing website and lead API.",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "pnpm --filter @hom/web start",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:e2e": "pnpm --filter @hom/web test:e2e",
+    "screenshots": "pnpm --filter @hom/web screenshots",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "gen:api": "pnpm --filter @hom/api-client gen",
+    "content:export": "pnpm --filter @hom/web content:export",
+    "media:optimize": "pnpm --filter @hom/web media:optimize",
+    "lighthouse": "pnpm --filter @hom/web lighthouse"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "turbo": "2.11.10"
+  }
+}
