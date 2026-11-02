@@ -5,6 +5,12 @@
 
 interface CspOptions {
   isDev: boolean;
+  /**
+   * The site is served over HTTPS. Only then may we force-upgrade subresources and send
+   * HSTS — on plain-HTTP hosts (e.g. a local production build) Safari would otherwise
+   * rewrite every asset to https:// and the page loads without CSS or JavaScript.
+   */
+  https: boolean;
   apiUrl?: string;
   analytics: boolean;
   turnstile: boolean;
@@ -19,7 +25,13 @@ function origin(url?: string): string | null {
   }
 }
 
-export function contentSecurityPolicy({ isDev, apiUrl, analytics, turnstile }: CspOptions): string {
+export function contentSecurityPolicy({
+  isDev,
+  https,
+  apiUrl,
+  analytics,
+  turnstile,
+}: CspOptions): string {
   const ga = analytics
     ? ["https://www.googletagmanager.com", "https://*.google-analytics.com"]
     : [];
@@ -44,7 +56,7 @@ export function contentSecurityPolicy({ isDev, apiUrl, analytics, turnstile }: C
     "base-uri": ["'self'"],
     "form-action": ["'self'"],
     "object-src": ["'none'"],
-    ...(isDev ? {} : { "upgrade-insecure-requests": [] }),
+    ...(https ? { "upgrade-insecure-requests": [] } : {}),
   };
 
   return Object.entries(directives)
@@ -62,13 +74,13 @@ export function securityHeaders(options: CspOptions) {
       key: "Permissions-Policy",
       value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()",
     },
-    ...(options.isDev
-      ? []
-      : [
+    ...(options.https
+      ? [
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
-        ]),
+        ]
+      : []),
   ];
 }

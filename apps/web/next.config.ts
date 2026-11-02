@@ -51,6 +51,7 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders({
           isDev,
+          https: (process.env.NEXT_PUBLIC_SITE_URL ?? "").startsWith("https://"),
           apiUrl: process.env.NEXT_PUBLIC_API_URL,
           analytics: Boolean(process.env.NEXT_PUBLIC_GA_ID),
           turnstile: process.env.NEXT_PUBLIC_TURNSTILE_ENABLED === "true",

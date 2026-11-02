@@ -29,6 +29,12 @@ export default defineConfig({
       use: { ...devices["Pixel 7"] },
     },
     {
+      // Safari engine: catches WebKit-only issues (e.g. CSP upgrades on plain-HTTP hosts).
+      name: "webkit",
+      testMatch: /(smoke|trial|navigation)\.spec/,
+      use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
+    },
+    {
       name: "screenshots",
       testMatch: /screenshots\.spec/,
       use: { ...devices["Desktop Chrome"] },

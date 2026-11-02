@@ -107,8 +107,8 @@ jobs:
           uv run alembic upgrade head
           uv run python -m app.scripts.seed
       - run: pnpm --filter @hom/web build
-      - run: pnpm --filter @hom/web exec playwright install --with-deps chromium
-      - run: pnpm --filter @hom/web exec playwright test --project=desktop --project=mobile
+      - run: pnpm --filter @hom/web exec playwright install --with-deps chromium webkit
+      - run: pnpm --filter @hom/web exec playwright test --project=desktop --project=mobile --project=webkit
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
