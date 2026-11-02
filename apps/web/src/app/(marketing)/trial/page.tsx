@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { TrialWizard } from "@/components/forms/trial-wizard";
-import { Reveal } from "@/components/motion/reveal";
-import { SplitText } from "@/components/motion/split-text";
+import { IntroRise, IntroText } from "@/components/motion/intro";
 import { SmartImage } from "@/components/media/smart-image";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { getAbout, getClasses, getFormsCopy, getLegal, getPage, getSite, getUi } from "@/content";
@@ -30,30 +29,28 @@ export default async function TrialPage() {
       <div className="container-hom grid gap-14 lg:grid-cols-12 lg:gap-10">
         <aside className="flex flex-col gap-8 lg:col-span-4">
           <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)] lg:flex lg:flex-col lg:gap-8">
-            <Reveal y={12}>
+            <IntroRise>
               <Eyebrow>{page.hero.eyebrow}</Eyebrow>
-            </Reveal>
-            <SplitText
-              as="h1"
+            </IntroRise>
+            <IntroText
               id="page-title"
-              trigger="mount"
-              delay={0.1}
+              delay={100}
               text={page.hero.title}
               className="mt-6 display text-[clamp(4rem,10vw,8.5rem)] leading-[0.86] lg:mt-0"
             />
             {page.hero.intro ? (
-              <Reveal delay={0.3}>
+              <IntroRise delay={300}>
                 <p className="mt-6 font-serif text-lede text-bone/80 italic lg:mt-0">
                   {page.hero.intro}
                 </p>
-              </Reveal>
+              </IntroRise>
             ) : null}
-            <Reveal
-              delay={0.4}
+            <IntroRise
+              delay={400}
               className="relative mt-8 hidden aspect-[4/5] overflow-hidden rounded-xs lg:block"
             >
               <SmartImage image={about.hero.image} sizes="30vw" quality={60} />
-            </Reveal>
+            </IntroRise>
           </div>
         </aside>
 

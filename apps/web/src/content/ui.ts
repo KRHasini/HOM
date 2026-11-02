@@ -20,6 +20,7 @@ export const ui = {
   },
   classes: {
     filterLabel: "Filter classes",
+    gridTitle: "All classes",
     allLabel: "All",
     categoryLabels: { dance: "Dance", fitness: "Fitness & Wellness", traditional: "Traditional" },
     audienceLabels: { kids: "Kids", teens: "Teens", adults: "Adults" },
@@ -69,6 +70,7 @@ export const ui = {
     statusLabels: { scheduled: "Scheduled", cancelled: "Cancelled", postponed: "Postponed" },
   },
   gallery: {
+    filter: "Filter gallery",
     all: "All",
     play: "Play",
     view: "View",

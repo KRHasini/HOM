@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { brand } from "@/content/brand.config";
 import { getSite } from "@/content";
 import { fontVariables } from "@/lib/fonts";
 
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0C",
+  themeColor: brand.colors.ink,
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,

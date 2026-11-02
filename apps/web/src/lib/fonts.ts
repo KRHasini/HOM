@@ -15,13 +15,14 @@ export const manrope = Manrope({
   variable: "--font-manrope",
 });
 
+// Serif and script carry above-the-fold copy (hero ledes, the signature line), which is
+// often the LCP element — so they are preloaded, and limited to the weights in use.
 export const cormorant = Cormorant_Garamond({
-  weight: ["400", "500"],
+  weight: "400",
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-cormorant",
-  preload: false,
 });
 
 /** Script accent — used once or twice at most (the signature line). */
@@ -30,7 +31,6 @@ export const script = Mrs_Saint_Delafield({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-script",
-  preload: false,
 });
 
 export const fontVariables = [

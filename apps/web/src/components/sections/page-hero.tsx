@@ -1,9 +1,7 @@
 import type { ReactNode } from "react";
 
-import { DrawLine } from "@/components/motion/draw-line";
+import { IntroLine, IntroRise, IntroText } from "@/components/motion/intro";
 import { Parallax } from "@/components/motion/parallax";
-import { Reveal } from "@/components/motion/reveal";
-import { SplitText } from "@/components/motion/split-text";
 import { SmartImage } from "@/components/media/smart-image";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import type { ResolvedImage } from "@/lib/media";
@@ -35,26 +33,24 @@ export function PageHero({ eyebrow, title, intro, image, children }: PageHeroPro
       ) : (
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_10%,rgb(184_134_59/0.18),transparent_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_10%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%)]"
         />
       )}
       <div className="relative z-[3] container-hom flex flex-col gap-6">
-        <Reveal y={12}>
+        <IntroRise>
           <Eyebrow>{eyebrow}</Eyebrow>
-        </Reveal>
-        <SplitText
-          as="h1"
+        </IntroRise>
+        <IntroText
           id="page-title"
-          trigger="mount"
-          delay={0.15}
           text={title}
+          delay={120}
           className="display text-[clamp(4.25rem,15vw,13rem)] leading-[0.86]"
         />
-        <DrawLine immediate delay={0.5} className="max-w-2xl" />
+        <IntroLine delay={420} className="max-w-2xl" />
         {intro ? (
-          <Reveal delay={0.55}>
+          <IntroRise delay={480}>
             <p className="max-w-xl font-serif text-lede text-bone/85 italic">{intro}</p>
-          </Reveal>
+          </IntroRise>
         ) : null}
         {children}
       </div>

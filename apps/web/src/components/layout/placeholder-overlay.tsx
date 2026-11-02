@@ -20,7 +20,7 @@ export function PlaceholderOverlay() {
       const found = new Map<string, Slot>();
       document.querySelectorAll<HTMLElement>("[data-placeholder],[data-stock]").forEach((el) => {
         const path = el.dataset.placeholder || el.dataset.stock || "unknown";
-        el.style.outline = "2px dashed #D9B26A";
+        el.style.outline = "2px dashed var(--gold-light)";
         found.set(path, { path, kind: el.dataset.placeholder ? "missing" : "stock" });
       });
       setSlots([...found.values()]);

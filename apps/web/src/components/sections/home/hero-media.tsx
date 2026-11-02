@@ -36,7 +36,7 @@ export function HeroMedia({ video }: { video: ResolvedVideo }) {
           )}
           data-stock={video.stock ? video.path : undefined}
         >
-          <LazyVideo video={video} onReady={() => setReady(true)} className="scale-105" />
+          <LazyVideo video={video} defer onReady={() => setReady(true)} className="scale-105" />
         </div>
       ) : null}
       {/* Darkening for legibility: vignette + bottom fade into the next scene. */}
@@ -55,9 +55,9 @@ export function GradientMesh() {
         className="absolute -inset-[20%] animate-mesh motion-reduce:animate-none"
         style={{
           background: [
-            "radial-gradient(40% 35% at 30% 30%, rgb(217 178 106 / 0.35), transparent 70%)",
-            "radial-gradient(35% 30% at 72% 62%, rgb(184 134 59 / 0.28), transparent 70%)",
-            "radial-gradient(30% 25% at 50% 90%, rgb(122 31 26 / 0.25), transparent 70%)",
+            "radial-gradient(40% 35% at 30% 30%, color-mix(in oklab, var(--gold-light) 35%, transparent), transparent 70%)",
+            "radial-gradient(35% 30% at 72% 62%, color-mix(in oklab, var(--gold) 28%, transparent), transparent 70%)",
+            "radial-gradient(30% 25% at 50% 90%, color-mix(in oklab, var(--gold-deep) 25%, transparent), transparent 70%)",
           ].join(","),
         }}
       />

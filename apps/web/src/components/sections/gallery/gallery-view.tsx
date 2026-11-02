@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import { LazyVideo } from "@/components/media/lazy-video";
 import { SmartImage } from "@/components/media/smart-image";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Chip } from "@/components/ui/chip";
 import type { ResolvedGalleryItem } from "@/content";
 import type { GalleryCategory } from "@/content/schema";
 
@@ -15,6 +15,7 @@ interface GalleryViewProps {
   items: ResolvedGalleryItem[];
   categories: { id: GalleryCategory; label: string }[];
   labels: {
+    filter: string;
     all: string;
     play: string;
     view: string;
@@ -37,19 +38,20 @@ export function GalleryView({ items, categories, labels }: GalleryViewProps) {
 
   return (
     <>
-      <Tabs value={tab} onValueChange={setTab}>
-        <TabsList
-          aria-label="Gallery categories"
-          className="-mx-(--gutter) px-(--gutter) md:mx-0 md:px-0"
-        >
-          <TabsTrigger value={ALL}>{labels.all}</TabsTrigger>
-          {categories.map((c) => (
-            <TabsTrigger key={c.id} value={c.id}>
-              {c.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+      <div
+        role="group"
+        aria-label={labels.filter}
+        className="-mx-(--gutter) no-scrollbar flex gap-2 overflow-x-auto px-(--gutter) md:mx-0 md:px-0"
+      >
+        <Chip selected={tab === ALL} onClick={() => setTab(ALL)}>
+          {labels.all}
+        </Chip>
+        {categories.map((c) => (
+          <Chip key={c.id} selected={tab === c.id} onClick={() => setTab(c.id)}>
+            {c.label}
+          </Chip>
+        ))}
+      </div>
 
       <ul className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>li]:mb-4">
         {visible.map((item, index) => {

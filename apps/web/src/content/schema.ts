@@ -410,6 +410,7 @@ export const UiCopySchema = z.object({
   error: z.object({ eyebrow: z.string(), title: z.string(), text: z.string(), retry: z.string() }),
   classes: z.object({
     filterLabel: z.string(),
+    gridTitle: z.string(),
     allLabel: z.string(),
     categoryLabels: z.record(z.enum(categories), z.string()),
     audienceLabels: z.record(z.enum(audiences), z.string()),
@@ -464,6 +465,7 @@ export const UiCopySchema = z.object({
     statusLabels: z.record(z.enum(["scheduled", "cancelled", "postponed"]), z.string()),
   }),
   gallery: z.object({
+    filter: z.string(),
     all: z.string(),
     play: z.string(),
     view: z.string(),

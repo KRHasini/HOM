@@ -5,6 +5,9 @@
  */
 import { z } from "zod";
 
+// No runtime code generation: keeps the strict CSP (no unsafe-eval) violation-free.
+z.config({ jitless: true });
+
 export const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;
 export const timeWindows = ["morning", "afternoon", "evening", "weekend", "flexible"] as const;
 export type Weekday = (typeof weekdays)[number];

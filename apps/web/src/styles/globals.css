@@ -103,6 +103,44 @@
   }
 }
 
+/* Hero intro — pure CSS so it runs from first paint, before hydration. */
+@keyframes hero-word {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes hero-line {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes hero-spin {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+}
+
+@utility hero-word {
+  animation: hero-word 1.1s var(--ease-expo) var(--d, 0ms) both;
+}
+@utility hero-rise {
+  animation: hero-rise 0.9s var(--ease-expo) var(--d, 0ms) both;
+}
+@utility hero-line {
+  transform-origin: left;
+  animation: hero-line 1.4s var(--ease-in-out) var(--d, 0ms) both;
+}
+@utility hero-spin {
+  animation: hero-spin 1.2s var(--ease-expo) var(--d, 0ms) both;
+}
+
 /* ----------------------------------------------------------------- base */
 @layer base {
   html {
@@ -191,6 +229,7 @@
     ::before,
     ::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;

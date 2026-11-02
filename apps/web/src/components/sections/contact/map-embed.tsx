@@ -55,7 +55,7 @@ export function MapEmbed({
             </defs>
             <rect width="100%" height="100%" fill="url(#map-grid)" />
           </svg>
-          <span className="relative grid size-16 place-items-center rounded-full bg-gold text-ink shadow-[0_0_0_12px_rgb(184_134_59/0.2)]">
+          <span className="relative grid size-16 place-items-center rounded-full bg-gold text-ink shadow-[0_0_0_12px_color-mix(in_oklab,var(--gold)_20%,transparent)]">
             <HomMark className="size-9" />
           </span>
           <p className="relative max-w-sm text-bone/85">{address}</p>

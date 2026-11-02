@@ -1,6 +1,5 @@
 import { HomMark } from "@/components/brand/hom-mark";
-import { Reveal } from "@/components/motion/reveal";
-import { SplitText } from "@/components/motion/split-text";
+import { IntroRise, IntroText } from "@/components/motion/intro";
 import { ButtonLink } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { getUi } from "@/content";
@@ -15,23 +14,21 @@ export function NotFoundView() {
     >
       <HomMark className="absolute -right-24 -bottom-24 size-[28rem] text-gold/[0.07]" />
       <div className="relative flex flex-col items-center gap-6">
-        <Reveal y={12}>
+        <IntroRise>
           <Eyebrow>{copy.eyebrow}</Eyebrow>
-        </Reveal>
-        <SplitText
-          as="h1"
-          trigger="mount"
+        </IntroRise>
+        <IntroText
           text={copy.title}
           className="display text-[clamp(4rem,14vw,11rem)] leading-[0.86]"
         />
-        <Reveal delay={0.3}>
+        <IntroRise delay={300}>
           <p className="max-w-md font-serif text-lede text-bone/80 italic">{copy.text}</p>
-        </Reveal>
-        <Reveal delay={0.4}>
+        </IntroRise>
+        <IntroRise delay={400}>
           <ButtonLink href={copy.cta.href} size="lg" arrow>
             {copy.cta.label}
           </ButtonLink>
-        </Reveal>
+        </IntroRise>
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
+import { IntroRise, IntroText } from "@/components/motion/intro";
 import { Parallax } from "@/components/motion/parallax";
-import { Reveal } from "@/components/motion/reveal";
-import { SplitText } from "@/components/motion/split-text";
 import { SmartImage } from "@/components/media/smart-image";
 import { ButtonLink } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
@@ -64,7 +63,7 @@ export function ClassHero({
               style={{
                 background:
                   t === "monochrome"
-                    ? "linear-gradient(180deg, transparent, rgb(184 134 59 / 0.35))"
+                    ? "linear-gradient(180deg, transparent, color-mix(in oklab, var(--gold) 35%, transparent))"
                     : `radial-gradient(80% 70% at 85% 100%, ${item.accent}, transparent 70%)`,
               }}
             />
@@ -74,25 +73,23 @@ export function ClassHero({
       </div>
 
       <div className="relative z-[3] container-hom flex flex-col gap-6">
-        <Reveal y={12}>
+        <IntroRise>
           <Eyebrow className={cn(light && "text-gold-deep")}>{eyebrow}</Eyebrow>
-        </Reveal>
-        <SplitText
-          as="h1"
+        </IntroRise>
+        <IntroText
           id="page-title"
-          trigger="mount"
-          delay={0.15}
+          delay={120}
           text={item.name}
           className={cn(
             "max-w-[12ch]",
             t === "warm-serif"
-              ? "font-serif text-[clamp(4rem,13vw,11rem)] font-medium tracking-tight italic"
+              ? "font-serif text-[clamp(4rem,13vw,11rem)] tracking-tight italic"
               : "display text-[clamp(4rem,14vw,12rem)]",
             // After the font size: tailwind-merge drops a leading-* that precedes text-*.
             "leading-[0.86]",
           )}
         />
-        <Reveal delay={0.45}>
+        <IntroRise delay={380}>
           <p
             className={cn(
               "max-w-2xl font-serif text-[clamp(1.5rem,3vw,2.5rem)] leading-tight italic",
@@ -102,9 +99,9 @@ export function ClassHero({
           >
             {item.tagline}
           </p>
-        </Reveal>
-        <Reveal
-          delay={0.55}
+        </IntroRise>
+        <IntroRise
+          delay={480}
           className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
         >
           <ul className="flex flex-wrap gap-2">
@@ -133,7 +130,7 @@ export function ClassHero({
               {whatsapp.label}
             </ButtonLink>
           </div>
-        </Reveal>
+        </IntroRise>
       </div>
     </section>
   );

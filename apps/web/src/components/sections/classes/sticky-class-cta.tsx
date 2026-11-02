@@ -42,7 +42,7 @@ export function StickyClassCta({
           <Link
             href={href}
             onClick={() => track("cta_click", { location: "sticky_class_cta", class: slug })}
-            className="group/sticky flex min-h-14 items-center justify-between gap-6 rounded-full bg-accent py-2 pr-2 pl-6 text-accent-contrast shadow-[0_20px_50px_-20px_rgb(0_0_0/0.6)]"
+            className="group/sticky flex min-h-14 items-center justify-between gap-6 rounded-full bg-accent py-2 pr-2 pl-6 text-accent-contrast shadow-[0_20px_50px_-20px_color-mix(in_oklab,var(--ink)_60%,transparent)]"
           >
             <span className="text-sm font-semibold tracking-[0.12em] uppercase">{label}</span>
             <span className="grid size-10 place-items-center rounded-full bg-ink text-ivory">

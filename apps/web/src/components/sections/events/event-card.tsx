@@ -37,7 +37,7 @@ export function EventCard({ event, labels, enquireHref, past = false }: EventCar
         ) : (
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(70%_70%_at_30%_20%,rgb(184_134_59/0.3),transparent_70%)]"
+            className="absolute inset-0 bg-[radial-gradient(70%_70%_at_30%_20%,color-mix(in_oklab,var(--gold)_30%,transparent),transparent_70%)]"
           />
         )}
         <div className="absolute top-4 left-4 flex flex-col items-center bg-gold px-4 py-3 text-ink">
@@ -84,7 +84,7 @@ export function EventsEmpty({
     <div className="relative overflow-hidden border border-hairline p-10 md:p-16">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(50%_80%_at_100%_0%,rgb(184_134_59/0.18),transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(50%_80%_at_100%_0%,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_70%)]"
       />
       <div className="relative flex flex-col gap-5">
         <p className="display text-section text-gold-light">{title}</p>

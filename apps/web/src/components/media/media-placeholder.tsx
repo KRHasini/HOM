@@ -34,7 +34,7 @@ export function MediaPlaceholder({ motif, path, label, accent, className }: Medi
         className="absolute inset-0"
         style={{
           background: [
-            "radial-gradient(60% 50% at 72% 18%, rgb(217 178 106 / 0.28), transparent 70%)",
+            "radial-gradient(60% 50% at 72% 18%, color-mix(in oklab, var(--gold-light) 28%, transparent), transparent 70%)",
             "radial-gradient(55% 45% at 18% 88%, color-mix(in oklab, var(--ph-accent) 35%, transparent), transparent 70%)",
             "linear-gradient(165deg, var(--ink-raised), var(--ink) 70%)",
           ].join(","),
@@ -55,7 +55,7 @@ export function MediaPlaceholder({ motif, path, label, accent, className }: Medi
       </svg>
       <DancerMotif
         motif={motif}
-        className="absolute bottom-[12%] left-1/2 h-[62%] max-h-[420px] w-auto -translate-x-1/2 opacity-90 drop-shadow-[0_0_24px_rgb(217_178_106/0.25)]"
+        className="absolute bottom-[12%] left-1/2 h-[62%] max-h-[420px] w-auto -translate-x-1/2 opacity-90 drop-shadow-[0_0_24px_color-mix(in_oklab,var(--gold-light)_25%,transparent)]"
       />
     </div>
   );

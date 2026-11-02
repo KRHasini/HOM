@@ -40,7 +40,7 @@ export function AboutTeaser({
           <ImageReveal
             direction="left"
             delay={0.25}
-            className="absolute right-0 -bottom-10 aspect-[4/3] w-[48%] rounded-xs border-[6px] border-ivory shadow-[0_30px_60px_-30px_rgb(11_11_12/0.5)]"
+            className="absolute right-0 -bottom-10 aspect-[4/3] w-[48%] rounded-xs border-[6px] border-ivory shadow-[0_30px_60px_-30px_color-mix(in_oklab,var(--ink)_50%,transparent)]"
           >
             <Parallax amount={10} className="absolute inset-0">
               <SmartImage image={studioImage} sizes="(min-width: 1024px) 24vw, 48vw" />

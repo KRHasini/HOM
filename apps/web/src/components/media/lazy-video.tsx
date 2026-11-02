@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useAutoplayAllowed } from "@/lib/hooks/use-media-query";
 import type { ResolvedVideo } from "@/lib/media";
@@ -13,16 +13,40 @@ interface LazyVideoProps {
   mode?: "inview" | "hover";
   /** Fires once the first frame can play — used to cross-fade over a poster. */
   onReady?: () => void;
+  /** Wait for page load + an idle moment before fetching (keeps bandwidth for the LCP). */
+  defer?: boolean;
 }
 
 /**
  * Muted, inline, metadata-preloaded video that plays only while on screen and never
  * autoplays for reduced motion or data-saver visitors.
  */
-export function LazyVideo({ video, className, mode = "inview", onReady }: LazyVideoProps) {
+export function LazyVideo({
+  video,
+  className,
+  mode = "inview",
+  onReady,
+  defer = false,
+}: LazyVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   // Sources attach only when allowed, so nothing downloads for visitors who opted out.
-  const allowed = useAutoplayAllowed();
+  const autoplayAllowed = useAutoplayAllowed();
+  const [loaded, setLoaded] = useState(!defer);
+  const allowed = autoplayAllowed && loaded;
+
+  useEffect(() => {
+    if (loaded) return;
+    let idle: number | undefined;
+    const start = () => {
+      idle = window.setTimeout(() => setLoaded(true), 600);
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
+    return () => {
+      window.removeEventListener("load", start);
+      window.clearTimeout(idle);
+    };
+  }, [loaded]);
 
   useEffect(() => {
     const el = ref.current;

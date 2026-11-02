@@ -32,7 +32,7 @@ export function GalleryPreview({ eyebrow, title, cta, items }: GalleryPreviewPro
     >
       <HorizontalScroll
         label={title}
-        className="flex min-h-svh flex-col justify-center py-(--section-y) lg:py-0"
+        className="flex flex-col justify-center py-(--section-y) lg:min-h-svh lg:py-0"
         trackClassName="items-start gap-5 lg:items-center lg:gap-8"
       >
         <div className="flex w-[80vw] shrink-0 snap-start flex-col justify-center gap-8 sm:w-[50vw] lg:w-[32vw] lg:pr-8">

@@ -1,4 +1,5 @@
-import { QuickTrialForm, type QuickTrialFormProps } from "@/components/forms/quick-trial-form";
+import { DeferredQuickTrialForm } from "@/components/forms/deferred-quick-trial-form";
+import type { QuickTrialFormProps } from "@/components/forms/quick-trial-form";
 import { Parallax } from "@/components/motion/parallax";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
@@ -50,7 +51,7 @@ export function TrialCta({ eyebrow, title, intro, formTitle, image, form }: Tria
         <div className="lg:col-span-5 lg:self-end">
           <div className="border border-hairline bg-ink/70 p-6 backdrop-blur-md md:p-10">
             <p className="mb-4 eyebrow text-gold-light">{formTitle}</p>
-            <QuickTrialForm {...form} />
+            <DeferredQuickTrialForm {...form} />
           </div>
         </div>
       </div>

@@ -19,8 +19,11 @@ export default async function ClassesPage() {
   return (
     <>
       <PageHero {...page.hero} image={classes[0]?.cover} />
-      <Section surface="ink" className="pt-16 md:pt-24">
+      <Section surface="ink" className="pt-16 md:pt-24" labelledBy="class-grid-title">
         <div className="container-hom">
+          <h2 id="class-grid-title" className="sr-only">
+            {ui.classes.gridTitle}
+          </h2>
           <ClassGrid
             classes={classes.map((c) => ({
               slug: c.slug,
