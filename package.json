@@ -21,7 +21,12 @@
     "gen:api": "pnpm --filter @hom/api-client gen",
     "content:export": "pnpm --filter @hom/web content:export",
     "media:optimize": "pnpm --filter @hom/web media:optimize",
-    "lighthouse": "pnpm --filter @hom/web lighthouse"
+    "lighthouse": "pnpm --filter @hom/web lighthouse",
+    "api:dev": "cd apps/api && uv run uvicorn app.main:create_app --factory --reload --port 8000",
+    "api:test": "cd apps/api && uv run pytest",
+    "api:lint": "cd apps/api && uv run ruff check . && uv run ruff format --check . && uv run mypy app",
+    "db:migrate": "cd apps/api && uv run alembic upgrade head",
+    "db:seed": "cd apps/api && uv run python -m app.scripts.seed"
   },
   "devDependencies": {
     "prettier": "3.9.10",

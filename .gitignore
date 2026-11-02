@@ -42,3 +42,4 @@ apps/api/var/
 .vscode/*
 !.vscode/extensions.json
 *.log
+lighthouse-report/
