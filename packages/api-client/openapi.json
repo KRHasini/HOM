@@ -1,0 +1,1344 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "House of Movements API",
+    "description": "Lead capture and public content for the House of Movements website.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Liveness probe",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Readiness probe (checks the database)",
+        "operationId": "ready_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leads/form-token": {
+      "get": {
+        "tags": [
+          "leads"
+        ],
+        "summary": "Issue a form timing token",
+        "operationId": "form_token_v1_leads_form_token_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/leads": {
+      "post": {
+        "tags": [
+          "leads"
+        ],
+        "summary": "Create a lead from the trial or contact form",
+        "operationId": "create_lead_v1_leads_post",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadCreated"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Rejected request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/classes": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "summary": "List active classes",
+        "operationId": "list_classes_v1_classes_get",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassOut"
+                  },
+                  "title": "Response List Classes V1 Classes Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/classes/{slug}": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "summary": "Get a class by slug",
+        "operationId": "get_class_v1_classes__slug__get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClassOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/instructors": {
+      "get": {
+        "tags": [
+          "instructors"
+        ],
+        "summary": "List instructors",
+        "operationId": "list_instructors_v1_instructors_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/InstructorOut"
+                  },
+                  "type": "array",
+                  "title": "Response List Instructors V1 Instructors Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/instructors/{slug}": {
+      "get": {
+        "tags": [
+          "instructors"
+        ],
+        "summary": "Get an instructor by slug",
+        "operationId": "get_instructor_v1_instructors__slug__get",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructorOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/testimonials": {
+      "get": {
+        "tags": [
+          "marketing"
+        ],
+        "summary": "List testimonials",
+        "operationId": "list_testimonials_v1_testimonials_get",
+        "parameters": [
+          {
+            "name": "class",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Class"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "1-based page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "1-based page number"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Items per page",
+              "default": 20,
+              "title": "Page Size"
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_TestimonialOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/gallery": {
+      "get": {
+        "tags": [
+          "marketing"
+        ],
+        "summary": "List gallery media",
+        "operationId": "list_gallery_v1_gallery_get",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 32
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/MediaKind"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "1-based page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "1-based page number"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Items per page",
+              "default": 20,
+              "title": "Page Size"
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_GalleryItemOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/events": {
+      "get": {
+        "tags": [
+          "marketing"
+        ],
+        "summary": "List events",
+        "operationId": "list_events_v1_events_get",
+        "parameters": [
+          {
+            "name": "when",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "upcoming",
+                "past",
+                "all"
+              ],
+              "type": "string",
+              "default": "upcoming",
+              "title": "When"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "1-based page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "1-based page number"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Items per page",
+              "default": 20,
+              "title": "Page Size"
+            },
+            "description": "Items per page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_EventOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Audience": {
+        "type": "string",
+        "enum": [
+          "self",
+          "child"
+        ],
+        "title": "Audience"
+      },
+      "ClassOut": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "tagline": {
+            "type": "string",
+            "title": "Tagline"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "age_group": {
+            "type": "string",
+            "title": "Age Group"
+          },
+          "level": {
+            "type": "string",
+            "title": "Level"
+          },
+          "duration_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Minutes"
+          },
+          "accent": {
+            "type": "string",
+            "title": "Accent"
+          },
+          "sort_order": {
+            "type": "integer",
+            "title": "Sort Order"
+          },
+          "instructor_slugs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Instructor Slugs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "tagline",
+          "description",
+          "category",
+          "age_group",
+          "level",
+          "duration_minutes",
+          "accent",
+          "sort_order",
+          "instructor_slugs"
+        ],
+        "title": "ClassOut"
+      },
+      "EnquiryType": {
+        "type": "string",
+        "enum": [
+          "trial",
+          "contact"
+        ],
+        "title": "EnquiryType"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "details": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "EventOut": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Starts At"
+          },
+          "ends_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ends At"
+          },
+          "venue": {
+            "type": "string",
+            "title": "Venue"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "image_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Image Path"
+          },
+          "registration_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Registration Url"
+          },
+          "status": {
+            "$ref": "#/components/schemas/EventStatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "title",
+          "starts_at",
+          "ends_at",
+          "venue",
+          "description",
+          "image_path",
+          "registration_url",
+          "status"
+        ],
+        "title": "EventOut"
+      },
+      "EventStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "published",
+          "cancelled"
+        ],
+        "title": "EventStatus"
+      },
+      "FormTokenResponse": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          },
+          "issued_at": {
+            "type": "integer",
+            "title": "Issued At",
+            "description": "Unix epoch milliseconds"
+          },
+          "min_seconds": {
+            "type": "number",
+            "title": "Min Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "token",
+          "issued_at",
+          "min_seconds"
+        ],
+        "title": "FormTokenResponse"
+      },
+      "GalleryItemOut": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/MediaKind"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "caption": {
+            "type": "string",
+            "title": "Caption"
+          },
+          "width": {
+            "type": "integer",
+            "title": "Width"
+          },
+          "height": {
+            "type": "integer",
+            "title": "Height"
+          },
+          "poster_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Poster Path"
+          }
+        },
+        "type": "object",
+        "required": [
+          "path",
+          "kind",
+          "category",
+          "caption",
+          "width",
+          "height",
+          "poster_path"
+        ],
+        "title": "GalleryItemOut"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InstructorOut": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "bio": {
+            "type": "string",
+            "title": "Bio"
+          },
+          "specialties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Specialties"
+          },
+          "photo_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Photo Path"
+          },
+          "class_slugs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Class Slugs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "role",
+          "bio",
+          "specialties",
+          "photo_path",
+          "class_slugs"
+        ],
+        "title": "InstructorOut"
+      },
+      "LeadCreate": {
+        "properties": {
+          "enquiry_type": {
+            "$ref": "#/components/schemas/EnquiryType"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Name"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 24,
+            "minLength": 6,
+            "title": "Phone"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "audience": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Audience"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "age": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 99.0,
+                "minimum": 2.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age"
+          },
+          "class_slug": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Class Slug"
+          },
+          "preferred_days": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "mon",
+                "tue",
+                "wed",
+                "thu",
+                "fri",
+                "sat",
+                "sun"
+              ]
+            },
+            "type": "array",
+            "maxItems": 7,
+            "title": "Preferred Days"
+          },
+          "preferred_time": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "morning",
+                  "afternoon",
+                  "evening",
+                  "weekend",
+                  "flexible"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preferred Time"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "consent": {
+            "type": "boolean",
+            "title": "Consent"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "utm_source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Utm Source"
+          },
+          "utm_medium": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Utm Medium"
+          },
+          "utm_campaign": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Utm Campaign"
+          },
+          "referrer": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Referrer"
+          },
+          "landing_page": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Landing Page"
+          },
+          "website": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Website",
+            "description": "Honeypot. Must be empty.",
+            "default": ""
+          },
+          "form_token": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Form Token",
+            "description": "Signed render-time token."
+          },
+          "turnstile_token": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Turnstile Token"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "enquiry_type",
+          "name",
+          "phone",
+          "consent",
+          "form_token"
+        ],
+        "title": "LeadCreate"
+      },
+      "LeadCreated": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "message"
+        ],
+        "title": "LeadCreated"
+      },
+      "MediaKind": {
+        "type": "string",
+        "enum": [
+          "image",
+          "video"
+        ],
+        "title": "MediaKind"
+      },
+      "Page_EventOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EventOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total"
+        ],
+        "title": "Page[EventOut]"
+      },
+      "Page_GalleryItemOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/GalleryItemOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total"
+        ],
+        "title": "Page[GalleryItemOut]"
+      },
+      "Page_TestimonialOut_": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TestimonialOut"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page"
+          },
+          "page_size": {
+            "type": "integer",
+            "title": "Page Size"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "page",
+          "page_size",
+          "total"
+        ],
+        "title": "Page[TestimonialOut]"
+      },
+      "TestimonialOut": {
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "relation": {
+            "type": "string",
+            "title": "Relation"
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote"
+          },
+          "class_slug": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Class Slug"
+          }
+        },
+        "type": "object",
+        "required": [
+          "slug",
+          "name",
+          "relation",
+          "quote",
+          "class_slug"
+        ],
+        "title": "TestimonialOut"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

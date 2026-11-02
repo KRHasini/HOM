@@ -1,0 +1,418 @@
+{
+  "classes": [
+    {
+      "slug": "bharatanatyam",
+      "name": "Bharatanatyam",
+      "tagline": "Begin your Bharatanatyam journey with us.",
+      "description": "Bharatanatyam is one of India's oldest classical dance forms — a language of rhythm, expression and storytelling. Our classes honour that tradition while making it welcoming for first-time learners.\n\nStudents build a strong foundation in adavus, posture and footwork, then grow into abhinaya and expressive storytelling at their own pace.",
+      "category": "traditional",
+      "age_group": "kids, teens, adults",
+      "level": "Beginner friendly",
+      "duration_minutes": null,
+      "accent": "#7A1F1A",
+      "sort_order": 1,
+      "instructor_slugs": [
+        "vignesh-k"
+      ]
+    },
+    {
+      "slug": "western-hip-hop",
+      "name": "Western Hip-Hop",
+      "tagline": "Groove. Style. Attitude.",
+      "description": "Hip-Hop at HOM is about feel before flash: bounce, groove and musicality first, then the choreography that makes a crowd move.\n\nEach class layers foundations, grooves and a sharp combination you can take to the stage, the battle circle or your next reel.",
+      "category": "dance",
+      "age_group": "kids, teens, adults",
+      "level": "Beginner to advanced",
+      "duration_minutes": null,
+      "accent": "#E4DCCB",
+      "sort_order": 2,
+      "instructor_slugs": [
+        "vignesh-k",
+        "instructor-tba-dance"
+      ]
+    },
+    {
+      "slug": "contemporary",
+      "name": "Contemporary",
+      "tagline": "Flow. Emotion. Expression.",
+      "description": "Contemporary blends technique with freedom — floor work, release and lyrical lines that turn emotion into movement.\n\nClasses balance strength and softness, building control while giving you room to interpret music in your own way.",
+      "category": "dance",
+      "age_group": "teens, adults",
+      "level": "All levels",
+      "duration_minutes": null,
+      "accent": "#8E7C93",
+      "sort_order": 3,
+      "instructor_slugs": [
+        "vignesh-k"
+      ]
+    },
+    {
+      "slug": "bollywood",
+      "name": "Bollywood",
+      "tagline": "Feel the Beat. Live the Drama.",
+      "description": "Bollywood is pure celebration: big expressions, bold moves and the songs everyone knows by heart.\n\nLearn signature film choreography with the technique to perform it beautifully — for the stage, the sangeet or the sheer joy of it.",
+      "category": "dance",
+      "age_group": "kids, teens, adults",
+      "level": "All levels",
+      "duration_minutes": null,
+      "accent": "#C2185B",
+      "sort_order": 4,
+      "instructor_slugs": [
+        "vignesh-k",
+        "instructor-tba-dance"
+      ]
+    },
+    {
+      "slug": "free-style",
+      "name": "Free Style",
+      "tagline": "Be You. Be Free.",
+      "description": "Free Style is where technique meets personality. Explore improvisation, musicality and textures drawn from many dance styles.\n\nYou will leave each class with new vocabulary — and a little more of your own voice as a dancer.",
+      "category": "dance",
+      "age_group": "kids, teens, adults",
+      "level": "All levels",
+      "duration_minutes": null,
+      "accent": "#E4572E",
+      "sort_order": 5,
+      "instructor_slugs": [
+        "vignesh-k"
+      ]
+    },
+    {
+      "slug": "gymnastics",
+      "name": "Gymnastics",
+      "tagline": "Strength. Flexibility. Discipline.",
+      "description": "Our gymnastics classes develop strength, flexibility and body control through progressive, carefully supervised skills.\n\nFrom rolls and balances to handstands and beyond, students move up only when they are ready.",
+      "category": "fitness",
+      "age_group": "kids, teens",
+      "level": "Progressive levels",
+      "duration_minutes": null,
+      "accent": "#3A6EA5",
+      "sort_order": 6,
+      "instructor_slugs": [
+        "vignesh-k",
+        "instructor-tba-fitness"
+      ]
+    },
+    {
+      "slug": "yoga",
+      "name": "Yoga",
+      "tagline": "Step into a journey of balance, strength and serenity.",
+      "description": "Our yoga practice moves between steady strength and deep calm — mindful sequences, breath work and stillness.\n\nEvery pose offers options, so whether you are new to the mat or deepening a long practice, you will find your edge safely.",
+      "category": "fitness",
+      "age_group": "teens, adults",
+      "level": "All levels",
+      "duration_minutes": null,
+      "accent": "#8A9A78",
+      "sort_order": 7,
+      "instructor_slugs": [
+        "vignesh-k",
+        "instructor-tba-fitness"
+      ]
+    },
+    {
+      "slug": "zumba",
+      "name": "Zumba",
+      "tagline": "Dance it out. Feel the beat. Live the energy!",
+      "description": "Zumba turns fitness into a party — Latin and global rhythms, simple steps and an energy that carries the whole room.\n\nNo dance experience needed. Just show up, follow the beat and leave smiling.",
+      "category": "fitness",
+      "age_group": "teens, adults",
+      "level": "All fitness levels",
+      "duration_minutes": null,
+      "accent": "#A8B82F",
+      "sort_order": 8,
+      "instructor_slugs": [
+        "vignesh-k",
+        "instructor-tba-fitness"
+      ]
+    }
+  ],
+  "instructors": [
+    {
+      "slug": "vignesh-k",
+      "name": "Vignesh K",
+      "role": "Founder and Lead Instructor",
+      "bio": "Vignesh K founded House of Movements with a simple belief: everyone can move, and everyone deserves a space that helps them move with confidence.\n\nAs the studio's lead instructor, he guides the teaching across every style on the timetable — from classical foundations to street grooves and fitness — so each class shares the same care for technique, musicality and expression.\n\nHis classes are known for their warmth and their standards in equal measure: patient with beginners, demanding of potential, and always focused on the joy of dancing.",
+      "specialties": [
+        "Choreography",
+        "Performance coaching",
+        "Multi-style training"
+      ],
+      "photo_path": "/media/instructors/vignesh-k.jpg",
+      "is_placeholder": false,
+      "sort_order": 0
+    },
+    {
+      "slug": "instructor-tba-dance",
+      "name": "Dance Instructor",
+      "role": "Hip-Hop & Bollywood",
+      "bio": "Instructor profile to be announced.",
+      "specialties": [
+        "Hip-Hop",
+        "Bollywood"
+      ],
+      "photo_path": "/media/instructors/instructor-tba-dance.jpg",
+      "is_placeholder": true,
+      "sort_order": 1
+    },
+    {
+      "slug": "instructor-tba-fitness",
+      "name": "Fitness Instructor",
+      "role": "Yoga, Zumba & Gymnastics",
+      "bio": "Instructor profile to be announced.",
+      "specialties": [
+        "Yoga",
+        "Zumba",
+        "Gymnastics"
+      ],
+      "photo_path": "/media/instructors/instructor-tba-fitness.jpg",
+      "is_placeholder": true,
+      "sort_order": 2
+    }
+  ],
+  "testimonials": [
+    {
+      "slug": "placeholder-parent-bharatanatyam",
+      "name": "Parent name",
+      "relation": "parent",
+      "quote": "Placeholder testimonial — a parent's words about their child's first year of Bharatanatyam will appear here.",
+      "class_slug": "bharatanatyam",
+      "is_placeholder": true,
+      "sort_order": 1
+    },
+    {
+      "slug": "placeholder-student-hip-hop",
+      "name": "Student name",
+      "relation": "student",
+      "quote": "Placeholder testimonial — a student's story about finding confidence through Hip-Hop will appear here.",
+      "class_slug": "western-hip-hop",
+      "is_placeholder": true,
+      "sort_order": 2
+    },
+    {
+      "slug": "placeholder-student-yoga",
+      "name": "Student name",
+      "relation": "student",
+      "quote": "Placeholder testimonial — a student's reflection on how yoga changed their week will appear here.",
+      "class_slug": "yoga",
+      "is_placeholder": true,
+      "sort_order": 3
+    },
+    {
+      "slug": "placeholder-student-zumba",
+      "name": "Student name",
+      "relation": "student",
+      "quote": "Placeholder testimonial — a Zumba regular's words about the energy of the room will appear here.",
+      "class_slug": "zumba",
+      "is_placeholder": true,
+      "sort_order": 4
+    }
+  ],
+  "gallery": [
+    {
+      "path": "/media/gallery/photo-001.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Golden hour on stage",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 0
+    },
+    {
+      "path": "/media/gallery/video-001.mp4",
+      "kind": "video",
+      "category": "studio",
+      "caption": "Under the spotlight",
+      "width": 1280,
+      "height": 720,
+      "poster_path": "/media/gallery/video-001-poster.jpg",
+      "sort_order": 1
+    },
+    {
+      "path": "/media/gallery/photo-002.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Backlit",
+      "width": 1600,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 2
+    },
+    {
+      "path": "/media/gallery/photo-003.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Flight",
+      "width": 1601,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 3
+    },
+    {
+      "path": "/media/gallery/photo-004.jpg",
+      "kind": "image",
+      "category": "classes",
+      "caption": "Lines",
+      "width": 1920,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 4
+    },
+    {
+      "path": "/media/gallery/photo-005.jpg",
+      "kind": "image",
+      "category": "studio",
+      "caption": "At the barre",
+      "width": 2400,
+      "height": 1601,
+      "poster_path": null,
+      "sort_order": 5
+    },
+    {
+      "path": "/media/gallery/photo-006.jpg",
+      "kind": "image",
+      "category": "studio",
+      "caption": "Studio floor",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 6
+    },
+    {
+      "path": "/media/gallery/photo-007.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Classical duet",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 7
+    },
+    {
+      "path": "/media/gallery/video-002.mp4",
+      "kind": "video",
+      "category": "classes",
+      "caption": "Smoke & rhythm",
+      "width": 1280,
+      "height": 720,
+      "poster_path": "/media/gallery/video-002-poster.jpg",
+      "sort_order": 8
+    },
+    {
+      "path": "/media/gallery/photo-008.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Crew",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 9
+    },
+    {
+      "path": "/media/gallery/photo-009.jpg",
+      "kind": "image",
+      "category": "classes",
+      "caption": "Dance fitness",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 10
+    },
+    {
+      "path": "/media/gallery/photo-010.jpg",
+      "kind": "image",
+      "category": "classes",
+      "caption": "On the mat",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 11
+    },
+    {
+      "path": "/media/gallery/photo-011.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Ensemble",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 12
+    },
+    {
+      "path": "/media/gallery/photo-012.jpg",
+      "kind": "image",
+      "category": "performances",
+      "caption": "Duet",
+      "width": 1601,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 13
+    },
+    {
+      "path": "/media/gallery/photo-013.jpg",
+      "kind": "image",
+      "category": "classes",
+      "caption": "Extension",
+      "width": 1979,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 14
+    },
+    {
+      "path": "/media/gallery/photo-014.jpg",
+      "kind": "image",
+      "category": "events",
+      "caption": "Celebration",
+      "width": 2400,
+      "height": 1600,
+      "poster_path": null,
+      "sort_order": 15
+    },
+    {
+      "path": "/media/gallery/photo-015.jpg",
+      "kind": "image",
+      "category": "studio",
+      "caption": "The space",
+      "width": 2400,
+      "height": 1799,
+      "poster_path": null,
+      "sort_order": 16
+    },
+    {
+      "path": "/media/gallery/photo-016.jpg",
+      "kind": "image",
+      "category": "events",
+      "caption": "Open air",
+      "width": 1600,
+      "height": 2400,
+      "poster_path": null,
+      "sort_order": 17
+    }
+  ],
+  "events": [
+    {
+      "slug": "placeholder-annual-showcase",
+      "title": "Annual Showcase (placeholder)",
+      "starts_at": "2027-02-14T17:30:00+05:30",
+      "ends_at": null,
+      "venue": "Venue to be announced",
+      "description": "Placeholder event — every batch takes the stage for an evening of Bharatanatyam, Hip-Hop, Bollywood and more.",
+      "image_path": "/media/events/annual-showcase.jpg",
+      "registration_url": null,
+      "status": "published",
+      "is_placeholder": true
+    },
+    {
+      "slug": "placeholder-summer-workshop",
+      "title": "Summer Intensive (placeholder)",
+      "starts_at": "2027-04-20T10:00:00+05:30",
+      "ends_at": null,
+      "venue": "House of Movements studio",
+      "description": "Placeholder event — a week of intensive workshops across styles for kids and teens.",
+      "image_path": null,
+      "registration_url": null,
+      "status": "published",
+      "is_placeholder": true
+    }
+  ]
+}

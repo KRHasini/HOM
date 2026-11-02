@@ -1,0 +1,27 @@
+{
+  "name": "@hom/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Typed client for the HOM API, generated from its OpenAPI schema (pnpm gen:api).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "gen": "pnpm gen:openapi && pnpm gen:types",
+    "gen:openapi": "cd ../../apps/api && uv run python -m app.scripts.export_openapi ../../packages/api-client/openapi.json",
+    "gen:types": "openapi-typescript openapi.json -o src/schema.d.ts && prettier --write src/schema.d.ts --log-level warn",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.17.0"
+  },
+  "devDependencies": {
+    "@hom/config": "workspace:*",
+    "eslint": "9.39.5",
+    "openapi-typescript": "7.13.0",
+    "prettier": "3.9.10",
+    "typescript": "6.0.3"
+  }
+}

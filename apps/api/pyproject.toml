@@ -1,0 +1,78 @@
+[project]
+name = "hom-api"
+version = "0.1.0"
+description = "House of Movements API — lead capture and public content (modular monolith)."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi==0.162.0",
+    "uvicorn[standard]==0.54.0",
+    "pydantic==2.14.2",
+    "pydantic-settings==2.16.2",
+    "email-validator==2.3.0",
+    "sqlalchemy[asyncio]==2.1.6",
+    "asyncpg==0.32.0",
+    "alembic==1.20.1",
+    "structlog==26.1.0",
+    "phonenumbers==9.0.42",
+    "aiosmtplib==5.1.3",
+    "httpx==0.28.1",
+]
+
+[project.optional-dependencies]
+sentry = ["sentry-sdk[fastapi]==2.73.0"]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "pytest-asyncio==1.4.1.post1",
+    "ruff==0.17.3",
+    "mypy==2.4.1",
+]
+
+[tool.uv]
+package = false
+
+# --- Ruff -------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "SIM", "ASYNC", "S", "RUF", "PL", "TID"]
+ignore = [
+    "PLR0913", # FastAPI dependencies legitimately take many arguments
+    "PLR0917", # ...and many positional parameters
+    "PLR2004", # magic values are fine in tests and HTTP status checks
+    "B008",    # FastAPI's Depends() in defaults is idiomatic
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "PLR2004"]
+"alembic/**" = ["N999"]
+"app/modules/notifications/templates.py" = ["E501"] # inline HTML email markup
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+known-third-party = ["alembic"]
+
+# --- mypy -------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = ["alembic/versions/"]
+
+[[tool.mypy.overrides]]
+module = ["phonenumbers.*", "sentry_sdk.*"]
+ignore_missing_imports = true
+
+# --- pytest -----------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+addopts = "-ra --strict-markers"
+filterwarnings = ["ignore::DeprecationWarning:passlib.*"]
