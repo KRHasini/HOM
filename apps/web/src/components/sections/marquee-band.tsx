@@ -26,7 +26,7 @@ export function MarqueeBand({ items, label, className, direction = -1 }: Marquee
             >
               {item}
             </span>
-            <HomMark className="h-[clamp(2rem,4vw,3.5rem)] w-auto shrink-0 text-gold/70" />
+            <HomMark className="h-[clamp(3rem,7vw,6.5rem)] text-gold/70" />
           </Fragment>
         ))}
       </Marquee>

@@ -11,7 +11,6 @@ import { PageTransition } from "@/components/motion/page-transition";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getClasses, getLegal, getNavigation, getSite } from "@/content";
-import { getBrandAssets } from "@/lib/brand.server";
 import { telHref, whatsappHref } from "@/lib/contact";
 import { isProduction } from "@/lib/env";
 import { organizationJsonLd } from "@/lib/structured-data";
@@ -20,9 +19,8 @@ export default async function MarketingLayout({ children }: { children: ReactNod
   const site = getSite();
   const legal = getLegal();
   const [navigation, classes] = await Promise.all([getNavigation(), getClasses()]);
-  const brand = getBrandAssets();
   const waHref = whatsappHref(site.whatsapp.number, site.whatsapp.prefill);
-  const brandProps = { name: site.name, shortName: site.shortName, logo: brand.logoWhite };
+  const brandProps = { name: site.name };
 
   return (
     <>

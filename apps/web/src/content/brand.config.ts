@@ -4,12 +4,22 @@
  */
 
 export const brand = {
+  /** Official HOM logo, vector-traced from the studio's artwork (public/brand/). */
   logo: {
-    // Drop the supplied logo files here; the coded wordmark is used until they exist.
+    /** Ink lockup for light surfaces. */
     black: "/brand/logo-black.svg",
+    /** Ivory lockup for dark surfaces. */
     white: "/brand/logo-white.svg",
+    /** Raster lockups for consumers that need PNG (structured data, social cards). */
+    blackPng: "/brand/logo-black.png",
+    whitePng: "/brand/logo-white.png",
+    /** The leaping dancer inside the "O" — used as a recolourable mask. */
     mark: "/brand/mark.svg",
-    ogDefault: "/brand/og-default.jpg",
+    icon192: "/brand/icon-192.png",
+    icon512: "/brand/icon-512.png",
+    /** Intrinsic sizes (width × height) so images reserve space without layout shift. */
+    size: { width: 1323, height: 1020 },
+    markSize: { width: 511, height: 832 },
   },
   colors: {
     ink: "#0B0B0C",

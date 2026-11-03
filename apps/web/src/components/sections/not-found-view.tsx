@@ -12,7 +12,7 @@ export function NotFoundView() {
       data-surface="dark"
       className="grain relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-ink px-(--gutter) py-32 text-center text-ivory"
     >
-      <HomMark className="absolute -right-24 -bottom-24 size-[28rem] text-gold/[0.07]" />
+      <HomMark className="absolute -right-16 -bottom-16 h-[36rem] text-gold/[0.08]" />
       <div className="relative flex flex-col items-center gap-6">
         <IntroRise>
           <Eyebrow>{copy.eyebrow}</Eyebrow>

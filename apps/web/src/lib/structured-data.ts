@@ -1,5 +1,6 @@
 /** JSON-LD builders (schema.org). All data comes from the content layer. */
 import type { ResolvedClass, ResolvedEvent, ResolvedInstructor } from "@/content";
+import { brand } from "@/content/brand.config";
 import type { FaqItem, Site } from "@/content/schema";
 
 type JsonLd = Record<string, unknown>;
@@ -21,7 +22,7 @@ export function organizationJsonLd(site: Site, classes: ResolvedClass[]): JsonLd
     url: site.url,
     telephone: site.phone.e164,
     email: site.email,
-    logo: abs(site, "/icon.svg"),
+    logo: abs(site, brand.logo.blackPng),
     image: abs(site, "/opengraph-image"),
     sameAs: Object.values(site.social).filter(Boolean),
     hasMap: site.mapLink,

@@ -17,7 +17,7 @@ import { cn, pad2 } from "@/lib/utils";
 import { getLenis } from "../motion/smooth-scroll";
 
 export interface MobileMenuProps {
-  brand: { name: string; shortName: string; logo: string | null };
+  brand: { name: string };
   links: { label: string; href: string }[];
   cta: { label: string; href: string };
   labels: { open: string; close: string };
@@ -78,7 +78,7 @@ export function MobileMenu({
               >
                 <Dialog.Title className="sr-only">Menu</Dialog.Title>
                 <div className="container-hom flex h-(--header-h) shrink-0 items-center justify-between">
-                  <Logo src={brand.logo} name={brand.name} shortName={brand.shortName} />
+                  <Logo name={brand.name} />
                   <Dialog.Close
                     className="group/close grid size-12 place-items-center"
                     aria-label={labels.close}

@@ -1,66 +1,36 @@
 import Link from "next/link";
 
+import { brand } from "@/content/brand.config";
 import { cn } from "@/lib/utils";
 
-import { HomMark } from "./hom-mark";
-
 interface LogoProps {
-  /** Supplied logo file (public/brand/...) when present; the coded wordmark otherwise. */
-  src?: string | null;
   name: string;
-  shortName: string;
+  /** `light` = ivory logo for dark surfaces; `dark` = ink logo for light surfaces. */
+  tone?: "light" | "dark";
   size?: "sm" | "lg";
   className?: string;
-  href?: string;
+  /** Link target; pass `null` to render the logo without a link. */
+  href?: string | null;
 }
 
-/**
- * HOM wordmark: heavy Anton letters with the leaping-figure ring as the "O", a thin
- * rule, then the full studio name — mirroring the supplied logo's structure.
- */
-export function Logo({ src, name, shortName, size = "sm", className, href = "/" }: LogoProps) {
-  const [first = "H", , last = "M"] = shortName.split("");
-  const large = size === "lg";
-
-  const content = src ? (
-    // eslint-disable-next-line @next/next/no-img-element -- SVG logo, sized by CSS
-    <img src={src} alt={name} className={cn(large ? "h-24" : "h-10", "w-auto")} />
-  ) : (
-    <span className="flex flex-col items-center leading-none">
-      <span
-        className={cn(
-          "flex items-center display",
-          large ? "gap-[0.08em] text-[5.5rem] md:text-[8rem]" : "gap-[0.06em] text-[1.9rem]",
-        )}
-        aria-hidden="true"
-      >
-        <span>{first}</span>
-        <HomMark className="h-[0.74em] text-gold-light" />
-        <span>{last}</span>
-      </span>
-      <span
-        aria-hidden="true"
-        className={cn("block h-px w-full bg-current opacity-60", large ? "my-3" : "my-1")}
-      />
-      <span
-        aria-hidden="true"
-        className={cn(
-          "font-sans font-semibold whitespace-nowrap uppercase",
-          large
-            ? "text-[0.8rem] tracking-[0.42em] md:text-base"
-            : "text-[0.42rem] tracking-[0.34em]",
-        )}
-      >
-        {name}
-      </span>
-      <span className="sr-only">{name}</span>
-    </span>
+/** The official House of Movements lockup (HOM with the dancer, rule, full name). */
+export function Logo({ name, tone = "light", size = "sm", className, href = "/" }: LogoProps) {
+  const image = (
+    // eslint-disable-next-line @next/next/no-img-element -- vector logo, sized by CSS
+    <img
+      src={tone === "light" ? brand.logo.white : brand.logo.black}
+      alt={href ? `${name} — home` : name}
+      width={brand.logo.size.width}
+      height={brand.logo.size.height}
+      decoding="async"
+      className={cn("w-auto", size === "lg" ? "h-28 md:h-40" : "h-12 md:h-16")}
+    />
   );
 
-  if (!href) return <span className={className}>{content}</span>;
+  if (!href) return <span className={cn("inline-flex", className)}>{image}</span>;
   return (
-    <Link href={href} className={cn("inline-flex", className)} aria-label={`${name} — home`}>
-      {content}
+    <Link href={href} className={cn("inline-flex", className)}>
+      {image}
     </Link>
   );
 }

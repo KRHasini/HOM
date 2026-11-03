@@ -45,7 +45,7 @@ export function Hero({
         <IntroRise>
           <Eyebrow className="mb-6 md:mb-8" rule={false}>
             <span className="inline-flex hero-spin text-gold-light">
-              <HomMark className="h-6 w-6" />
+              <HomMark className="h-8" />
             </span>
             {eyebrow}
           </Eyebrow>

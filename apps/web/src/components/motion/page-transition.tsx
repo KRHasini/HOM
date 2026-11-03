@@ -114,7 +114,7 @@ export function PageTransition({ enabled }: { enabled: boolean }) {
             transition={{ duration: duration.page, ease: ease.expo }}
             className="text-gold-light"
           >
-            <HomMark className="h-14 w-auto" />
+            <HomMark className="h-24 md:h-32" />
           </m.div>
         </m.div>
       ) : null}

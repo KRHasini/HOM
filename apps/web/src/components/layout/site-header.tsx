@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import { MobileMenu, type MobileMenuProps } from "./mobile-menu";
 
 export interface SiteHeaderProps {
-  brand: { name: string; shortName: string; logo: string | null };
+  brand: { name: string };
   links: { label: string; href: string }[];
   cta: { label: string; href: string };
   menu: Omit<MobileMenuProps, "links" | "cta" | "brand" | "open" | "onOpenChange">;
@@ -67,12 +67,7 @@ export function SiteHeader({ brand, links, cta, menu }: SiteHeaderProps) {
         )}
       >
         <div className="container-hom flex h-(--header-h) items-center justify-between gap-6">
-          <Logo
-            src={brand.logo}
-            name={brand.name}
-            shortName={brand.shortName}
-            className="text-ivory"
-          />
+          <Logo name={brand.name} className="text-ivory" />
 
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center gap-9">

@@ -14,13 +14,13 @@ loadEnvConfig(path.resolve(import.meta.dirname, "../.."), isDev, undefined, true
 
 /** Warn (never fail) when the owner's brand files have not been dropped in yet. */
 function warnMissingBrandFiles() {
-  const required = ["logo-black.svg", "logo-white.svg", "mark.svg", "og-default.jpg"];
+  const required = ["logo-black.svg", "logo-white.svg", "mark.svg", "logo-black.png"];
   const dir = path.join(import.meta.dirname, "public", "brand");
   const missing = required.filter((file) => !existsSync(path.join(dir, file)));
   if (missing.length > 0) {
     console.warn(
       `\n[HOM] Missing brand files in public/brand/: ${missing.join(", ")}.\n` +
-        "      The coded HOM wordmark placeholder is used until they are added.\n",
+        "      Logos will not render until they are restored (see public/brand/README.md).\n",
     );
   }
 }

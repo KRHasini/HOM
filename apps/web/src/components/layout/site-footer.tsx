@@ -4,7 +4,6 @@ import { Logo } from "@/components/brand/logo";
 import { DrawLine } from "@/components/motion/draw-line";
 import { SplitText } from "@/components/motion/split-text";
 import { getLegal, getNavigation, getSite } from "@/content";
-import { getBrandAssets } from "@/lib/brand.server";
 import { formatAddress, telHref, whatsappHref } from "@/lib/contact";
 
 import { TrackedLink } from "./tracked-link";
@@ -13,7 +12,6 @@ export async function SiteFooter() {
   const site = getSite();
   const navigation = await getNavigation();
   const legal = getLegal();
-  const brand = getBrandAssets();
   const year = new Date().getFullYear();
 
   return (
@@ -21,7 +19,7 @@ export async function SiteFooter() {
       <div className="container-hom">
         <div className="flex flex-col items-start justify-between gap-12 lg:flex-row lg:items-end">
           <div className="flex flex-col gap-6">
-            <Logo src={brand.logoWhite} name={site.name} shortName={site.shortName} size="lg" />
+            <Logo name={site.name} size="lg" />
             <p className="eyebrow text-gold-light">{site.tagline}</p>
           </div>
           <SplitText
