@@ -36,7 +36,7 @@ export default async function TrialPage() {
               id="page-title"
               delay={100}
               text={page.hero.title}
-              className="mt-6 display text-[clamp(4rem,10vw,8.5rem)] leading-[0.86] lg:mt-0"
+              className="mt-6 display text-section lg:mt-0"
             />
             {page.hero.intro ? (
               <IntroRise delay={300}>

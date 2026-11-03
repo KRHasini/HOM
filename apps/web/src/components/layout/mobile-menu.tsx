@@ -23,7 +23,6 @@ export interface MobileMenuProps {
   labels: { open: string; close: string };
   contact: { phoneDisplay: string; telHref: string; whatsappHref: string; email: string };
   social: { instagram?: string; youtube?: string };
-  tagline: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
@@ -36,7 +35,6 @@ export function MobileMenu({
   labels,
   contact,
   social,
-  tagline,
   open,
   onOpenChange,
 }: MobileMenuProps) {
@@ -122,7 +120,7 @@ export function MobileMenu({
                             >
                               <span className="flex items-baseline gap-4">
                                 <span className="eyebrow text-gold-light/80">{pad2(i + 1)}</span>
-                                <span className="display text-[clamp(2.75rem,12vw,5rem)] leading-[1.05]">
+                                <span className="display text-[clamp(2rem,8vw,3rem)] leading-[1.15]">
                                   {link.label}
                                 </span>
                               </span>
@@ -189,7 +187,6 @@ export function MobileMenu({
                       ) : null}
                     </div>
                   </div>
-                  <p className="font-script text-3xl text-gold-light">{tagline}</p>
                 </m.div>
               </m.div>
             </Dialog.Content>

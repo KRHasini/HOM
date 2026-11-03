@@ -22,18 +22,18 @@ export const brand = {
     markSize: { width: 511, height: 832 },
   },
   colors: {
-    ink: "#0B0B0C",
-    inkSoft: "#17171A",
-    ivory: "#F6F1E8",
-    paper: "#FBF8F2",
-    gold: "#B8863B",
-    goldLight: "#D9B26A",
-    goldDeep: "#8A6224",
-    bone: "#E4DCCB",
-    muted: "#6B665D",
+    ink: "#2A2622",
+    inkSoft: "#343029",
+    ivory: "#F7F4EE",
+    paper: "#FCFAF6",
+    gold: "#B59B6D",
+    goldLight: "#D8C6A4",
+    goldDeep: "#75603B",
+    bone: "#E7E1D6",
+    muted: "#6A645B",
   },
   fonts: {
-    display: "Anton",
+    display: "Cormorant Garamond",
     serif: "Cormorant Garamond",
     sans: "Manrope",
     script: "Mrs Saint Delafield",
@@ -47,14 +47,14 @@ export const brand = {
  * class's own context.
  */
 export const classAccents = {
-  "western-hip-hop": { accent: "#E4DCCB", contrast: "#0B0B0C", onDark: "#E4DCCB" }, // monochrome, gold detail
-  "free-style": { accent: "#E4572E", contrast: "#0B0B0C", onDark: "#E4572E" },
-  contemporary: { accent: "#8E7C93", contrast: "#0B0B0C", onDark: "#A895AD" },
-  bollywood: { accent: "#C2185B", contrast: "#F6F1E8", onDark: "#E04A86" },
-  gymnastics: { accent: "#3A6EA5", contrast: "#F6F1E8", onDark: "#6C9BD0" },
-  bharatanatyam: { accent: "#7A1F1A", contrast: "#F6F1E8", onDark: "#D9B26A" }, // temple maroon with gold
-  yoga: { accent: "#8A9A78", contrast: "#0B0B0C", onDark: "#8A9A78" }, // calm sage on cream
-  zumba: { accent: "#A8B82F", contrast: "#0B0B0C", onDark: "#A8B82F" }, // energetic lime
+  "western-hip-hop": { accent: "#E7E1D6", contrast: "#2A2622", onDark: "#E7E1D6" }, // monochrome, gold detail
+  "free-style": { accent: "#C9795A", contrast: "#2A2622", onDark: "#D9917A" },
+  contemporary: { accent: "#8E7C93", contrast: "#2A2622", onDark: "#A895AD" },
+  bollywood: { accent: "#A8566F", contrast: "#F7F4EE", onDark: "#CE8CA0" },
+  gymnastics: { accent: "#4C6E94", contrast: "#F7F4EE", onDark: "#8FAAC6" },
+  bharatanatyam: { accent: "#7A3A34", contrast: "#F7F4EE", onDark: "#D8C6A4" }, // temple maroon with gold
+  yoga: { accent: "#8A9A78", contrast: "#2A2622", onDark: "#8A9A78" }, // calm sage on cream
+  zumba: { accent: "#A4AE6B", contrast: "#2A2622", onDark: "#A4AE6B" }, // energetic lime
 } as const satisfies Record<string, { accent: string; contrast: string; onDark: string }>;
 
 export type ClassAccentSlug = keyof typeof classAccents;

@@ -19,8 +19,8 @@ export function Chip({ selected, children, className, ...props }: ChipProps) {
         "inline-flex min-h-12 items-center gap-2 rounded-full border px-5 text-sm font-medium tracking-wide",
         "transition-[background-color,color,border-color] duration-300 ease-expo",
         selected
-          ? "border-gold bg-gold text-ink"
-          : "border-current/25 text-current/80 hover:border-gold-light hover:text-current",
+          ? "border-ink bg-ink text-ivory"
+          : "border-current/25 text-current/80 hover:border-current/60 hover:text-current",
         className,
       )}
       {...props}

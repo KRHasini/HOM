@@ -67,10 +67,9 @@ describe("SubmitButton", () => {
 });
 
 describe("ClassCard", () => {
-  it("links to the class with its name, tagline and confirmed meta only", () => {
+  it("links to the class with just its name and tagline", () => {
     render(
       <ClassCard
-        index={0}
         sizes="100vw"
         item={{
           slug: "yoga",
@@ -89,6 +88,7 @@ describe("ClassCard", () => {
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute("href", "/classes/yoga");
     expect(screen.getByRole("heading", { name: "Yoga" })).toBeInTheDocument();
-    expect(screen.getByText("Teens · Adults")).toBeInTheDocument();
+    expect(screen.getByText("Balance and serenity")).toBeInTheDocument();
+    expect(screen.queryByText("Teens · Adults")).not.toBeInTheDocument();
   });
 });

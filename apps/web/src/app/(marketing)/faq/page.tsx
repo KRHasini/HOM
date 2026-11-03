@@ -48,7 +48,7 @@ export default async function FaqPage() {
               >
                 <Reveal className="mb-6 flex items-baseline gap-4">
                   <span className="eyebrow text-gold-deep">{pad2(i + 1)}</span>
-                  <h2 id={`${g.id}-title`} className="display text-4xl md:text-5xl">
+                  <h2 id={`${g.id}-title`} className="display text-3xl">
                     {g.title}
                   </h2>
                 </Reveal>

@@ -6,6 +6,7 @@ const surfaces = {
   ink: "surface-ink",
   "ink-soft": "surface-ink-soft",
   ivory: "surface-ivory",
+  sand: "surface-sand",
   paper: "bg-paper text-ink",
 } as const;
 
@@ -38,7 +39,7 @@ export function Section({
   labelledBy,
   style,
 }: SectionProps) {
-  const light = surface === "ivory" || surface === "paper";
+  const light = surface === "ivory" || surface === "paper" || surface === "sand";
   return (
     <section
       id={id}

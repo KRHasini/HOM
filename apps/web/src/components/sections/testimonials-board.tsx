@@ -65,7 +65,7 @@ export function TestimonialsBoard({ items, labels }: TestimonialsBoardProps) {
                   i % 3 === 0 && "md:col-span-2",
                 )}
               >
-                <blockquote className="font-serif text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] italic">
+                <blockquote className="font-serif text-[clamp(1.25rem,1.8vw,1.625rem)] leading-[1.3] italic">
                   <span aria-hidden="true" className="mr-1 text-gold-deep">
                     “
                   </span>

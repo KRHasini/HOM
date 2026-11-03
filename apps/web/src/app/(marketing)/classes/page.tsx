@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { ClassGrid } from "@/components/sections/classes/class-grid";
-import { MarqueeBand } from "@/components/sections/marquee-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/sections/section";
 import { getClasses, getPage, getSite, getUi } from "@/content";
@@ -19,7 +18,7 @@ export default async function ClassesPage() {
   return (
     <>
       <PageHero {...page.hero} image={classes[0]?.cover} />
-      <Section surface="ink" className="pt-16 md:pt-24" labelledBy="class-grid-title">
+      <Section surface="ivory" className="pt-12 md:pt-16" labelledBy="class-grid-title">
         <div className="container-hom">
           <h2 id="class-grid-title" className="sr-only">
             {ui.classes.gridTitle}
@@ -49,7 +48,6 @@ export default async function ClassesPage() {
           />
         </div>
       </Section>
-      <MarqueeBand items={classes.map((c) => c.name)} label={page.hero.title} direction={1} />
     </>
   );
 }

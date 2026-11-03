@@ -92,7 +92,7 @@ export const legal = {
   draftNotice: "Draft — pending legal review.", // shown while `placeholder: true`
   updatedLabel: "Last updated",
   formConsent:
-    "I agree to be contacted about my enquiry. My details are used only to respond, as described in the privacy policy.",
+    "I agree to be contacted about my enquiry. My details are used only to respond — see our",
   cookie: {
     text: "We use optional analytics to understand what helps visitors. Nothing loads unless you accept.",
     accept: "Accept",

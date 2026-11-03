@@ -1,13 +1,5 @@
 /** Self-hosted Google fonts via next/font (downloaded at build, no runtime requests). */
-import { Anton, Cormorant_Garamond, Manrope, Mrs_Saint_Delafield } from "next/font/google";
-
-export const anton = Anton({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-anton",
-  fallback: ["Bebas Neue", "Impact", "Arial Narrow", "sans-serif"],
-});
+import { Cormorant_Garamond, Manrope, Mrs_Saint_Delafield } from "next/font/google";
 
 export const manrope = Manrope({
   subsets: ["latin"],
@@ -18,7 +10,7 @@ export const manrope = Manrope({
 // Serif and script carry above-the-fold copy (hero ledes, the signature line), which is
 // often the LCP element — so they are preloaded, and limited to the weights in use.
 export const cormorant = Cormorant_Garamond({
-  weight: "400",
+  weight: ["400", "500"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
@@ -34,7 +26,6 @@ export const script = Mrs_Saint_Delafield({
 });
 
 export const fontVariables = [
-  anton.variable,
   manrope.variable,
   cormorant.variable,
   script.variable,

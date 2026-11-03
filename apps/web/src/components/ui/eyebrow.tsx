@@ -2,11 +2,11 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Small, tracked-out uppercase label with a gold rule — pairs with Anton headlines. */
+/** Small tracked label; the gold rule is opt-in. */
 export function Eyebrow({
   children,
   className,
-  rule = true,
+  rule = false,
   as: Tag = "p",
 }: {
   children: ReactNode;

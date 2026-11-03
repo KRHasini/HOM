@@ -83,7 +83,7 @@ export default async function InstructorsPage() {
             {founder.philosophy ? (
               <Reveal className="border-l-2 border-gold pl-6">
                 <p className="mb-3 eyebrow text-gold-deep">{copy.philosophy}</p>
-                <p className="font-serif text-[clamp(1.5rem,2.6vw,2.25rem)] leading-snug italic">
+                <p className="font-serif text-[clamp(1.25rem,2vw,1.75rem)] leading-snug italic">
                   {founder.philosophy}
                 </p>
               </Reveal>

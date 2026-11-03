@@ -357,18 +357,18 @@ export default async function ClassDetailPage(props: PageProps<"/classes/[slug]"
       ) : null}
 
       {/* Related */}
-      <Section surface="ink" labelledBy="related-title">
+      <Section surface="sand" labelledBy="related-title">
         <div className="container-hom flex flex-col gap-12">
           <SectionHeading
             id="related-title"
-            eyebrow={copy.related}
             title={title(copy.titles.related)}
+            surface="light"
+            size="title"
           />
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {related.map((r, i) => (
+          <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6">
+            {related.map((r) => (
               <li key={r.slug}>
                 <ClassCard
-                  index={i}
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   item={{
                     slug: r.slug,

@@ -83,18 +83,18 @@ export function ClassHero({
           className={cn(
             "max-w-[12ch]",
             t === "warm-serif"
-              ? "font-serif text-[clamp(4rem,13vw,11rem)] tracking-tight italic"
-              : "display text-[clamp(4rem,14vw,12rem)]",
+              ? "font-serif text-[clamp(2.75rem,7vw,5.5rem)] tracking-tight italic"
+              : "display text-[clamp(2.75rem,7vw,5.5rem)]",
             // After the font size: tailwind-merge drops a leading-* that precedes text-*.
-            "leading-[0.86]",
+            "leading-[1.05]",
           )}
         />
         <IntroRise delay={380}>
           <p
             className={cn(
-              "max-w-2xl font-serif text-[clamp(1.5rem,3vw,2.5rem)] leading-tight italic",
+              "max-w-2xl font-serif text-[clamp(1.25rem,2vw,1.75rem)] leading-tight italic",
               t === "energetic" &&
-                "w-fit bg-accent px-3 py-1 font-sans text-[clamp(1.1rem,2vw,1.6rem)] font-bold text-accent-contrast uppercase not-italic",
+                "w-fit rounded-full bg-accent px-4 py-1 font-sans text-base font-medium text-accent-contrast not-italic",
             )}
           >
             {item.tagline}

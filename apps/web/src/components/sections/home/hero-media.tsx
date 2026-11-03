@@ -40,9 +40,8 @@ export function HeroMedia({ video }: { video: ResolvedVideo }) {
         </div>
       ) : null}
       {/* Darkening for legibility: vignette + bottom fade into the next scene. */}
-      <div className="absolute inset-0 bg-ink/45" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_30%,transparent_30%,var(--ink)_100%)] opacity-80" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-ink via-ink/60 to-transparent" />
+      <div className="absolute inset-0 bg-ink/40" />
+      <div className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-ink/80 via-ink/35 to-transparent" />
     </div>
   );
 }

@@ -51,7 +51,7 @@ export function EventCard({ event, labels, enquireHref, past = false }: EventCar
             {d.month} {d.day}, {d.year} · {d.time}
             {event.status !== "scheduled" ? ` · ${labels.status}` : ""}
           </p>
-          <h3 className="display text-4xl leading-[0.95] md:text-5xl">{event.title}</h3>
+          <h3 className="display text-3xl leading-[1.05] md:text-4xl">{event.title}</h3>
           <p className="text-sm text-muted-dark">{event.venue}</p>
           <p className="text-bone/80">{event.description}</p>
         </div>

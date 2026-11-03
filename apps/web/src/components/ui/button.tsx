@@ -8,8 +8,8 @@ import { ArrowIcon } from "./arrow-icon";
 
 export const buttonVariants = cva(
   [
-    "group/button relative inline-flex min-h-12 items-center justify-center gap-3 overflow-hidden",
-    "text-center font-sans text-[0.8125rem] font-semibold tracking-[0.16em] text-balance uppercase sm:whitespace-nowrap",
+    "group/button relative inline-flex min-h-12 items-center justify-center gap-3 overflow-hidden rounded-full",
+    "text-center font-sans text-[0.9375rem] font-medium tracking-[0.01em] text-balance sm:whitespace-nowrap",
     "transition-[color,background-color,border-color,box-shadow] duration-300 ease-expo",
     "disabled:pointer-events-none disabled:opacity-50",
   ],
@@ -18,14 +18,14 @@ export const buttonVariants = cva(
       variant: {
         /** Gold fill, ink text — the key CTA. */
         primary:
-          "bg-gold px-7 text-ink hover:bg-gold-light hover:shadow-[0_0_40px_-8px_var(--gold-light)]",
+          "bg-gold px-7 text-ink hover:bg-gold-light",
         /** Outlined; adapts to the surface it sits on. */
         secondary:
-          "border border-current/40 px-7 text-current hover:border-gold-light hover:text-gold-light",
+          "border border-current/30 px-7 text-current hover:border-current/70",
         /** Ink fill for light surfaces. */
         ink: "bg-ink px-7 text-ivory hover:bg-ink-soft",
         /** Text link with an animated underline. */
-        ghost: "min-h-0 link-underline px-0 pb-1 tracking-[0.18em]",
+        ghost: "min-h-0 rounded-none link-underline px-0 pb-1",
       },
       size: {
         md: "min-h-12 py-3",

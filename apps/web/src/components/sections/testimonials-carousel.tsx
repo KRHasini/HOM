@@ -57,7 +57,7 @@ export function TestimonialsCarousel({
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${items.length}`}
           >
-            <blockquote className="font-serif text-[clamp(1.75rem,3.6vw,3.25rem)] leading-[1.15] text-balance italic">
+            <blockquote className="font-serif text-[clamp(1.375rem,2.4vw,2.125rem)] leading-[1.3] text-balance italic">
               “{current.quote}”
             </blockquote>
             <figcaption className="flex flex-wrap items-center gap-3 text-sm">

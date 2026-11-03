@@ -5,7 +5,6 @@ import { ImageReveal } from "@/components/motion/image-reveal";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { SmartImage } from "@/components/media/smart-image";
-import { MarqueeBand } from "@/components/sections/marquee-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/sections/section";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -75,7 +74,7 @@ export default async function AboutPage() {
                 <SplitText
                   as="h3"
                   text={`${w.word}.`}
-                  className={`display text-[clamp(4.5rem,11vw,10rem)] leading-[0.85] md:col-span-8 ${i === 2 ? "text-gold-light" : ""}`}
+                  className={`display text-[clamp(2.75rem,6vw,4.5rem)] leading-[1] md:col-span-8 ${i === 2 ? "text-gold-light" : ""}`}
                 />
                 <Reveal delay={0.2} className="md:col-span-3">
                   <p className="font-serif text-lede text-bone/80 italic">{w.text}</p>
@@ -153,7 +152,7 @@ export default async function AboutPage() {
             </h2>
             {about.founderNote.quote.map((q, i) => (
               <Reveal key={q} delay={i * 0.08}>
-                <p className="font-serif text-[clamp(1.75rem,3.2vw,3rem)] leading-[1.15] italic">
+                <p className="font-serif text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.25] italic">
                   {q}
                 </p>
               </Reveal>
@@ -186,14 +185,13 @@ export default async function AboutPage() {
         </div>
       </Section>
 
-      <MarqueeBand items={[site.closing, site.tagline]} label={site.closing} />
 
       <Section surface="ink" labelledBy="closing-title" className="text-center">
         <div className="container-hom flex flex-col items-center gap-10">
           <SplitText
             id="closing-title"
             text={site.closing.split(/(?<=\.)\s+/)}
-            className="display text-[clamp(3.5rem,9vw,8rem)] leading-[0.9]"
+            className="display text-section"
           />
           <Reveal delay={0.2}>
             <ButtonLink href={navigation.cta.trial.href} size="lg" arrow>

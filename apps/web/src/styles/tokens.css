@@ -7,24 +7,25 @@
 
 :root {
   /* ---------------------------------------------------------------- color */
-  --ink: #0b0b0c; /* primary dark surface, headlines on light */
-  --ink-soft: #17171a; /* raised dark surfaces */
-  --ink-raised: #202024; /* cards on raised dark */
-  --ivory: #f6f1e8; /* primary light surface */
-  --paper: #fbf8f2; /* cards on ivory */
-  --gold: #b8863b; /* brand accent, hairlines, key CTA */
-  --gold-light: #d9b26a; /* accent on dark, hover glow */
-  --gold-deep: #8a6224; /* gold TEXT on light surfaces — 4.8:1 on ivory (plain gold is 2.9:1) */
-  --bone: #e4dccb; /* dividers and muted text on dark */
-  --text-muted: #6b665d; /* secondary text on light — 5.1:1 on ivory */
-  --text-muted-dark: #a39c8f; /* secondary text on dark — 7.2:1 on ink */
-  --success: #2f7d4f;
-  --error: #b3382c;
+  --ink: #2a2622; /* warm charcoal: text on light, the few dark surfaces */
+  --ink-soft: #343029; /* raised dark surfaces */
+  --ink-raised: #3f3a33; /* cards on raised dark */
+  --ivory: #f7f4ee; /* primary light surface */
+  --paper: #fcfaf6; /* cards on ivory */
+  --sand: #eee8dd; /* quiet alternate band between ivory sections */
+  --gold: #b59b6d; /* muted champagne: accent, hairlines, key CTA */
+  --gold-light: #d8c6a4; /* accent on dark, hover */
+  --gold-deep: #75603b; /* gold TEXT on light surfaces — ~5.5:1 on ivory */
+  --bone: #e7e1d6; /* dividers and muted text on dark */
+  --text-muted: #6a645b; /* secondary text on light — 5.2:1 on ivory */
+  --text-muted-dark: #b5aea2; /* secondary text on dark — 6.5:1 on ink */
+  --success: #3f7d58;
+  --error: #b04a3e;
   --error-on-dark: #ef8a78;
 
-  --hairline: rgb(184 134 59 / 0.35);
-  --hairline-soft: rgb(184 134 59 / 0.16);
-  --scrim: rgb(11 11 12 / 0.62);
+  --hairline: rgb(117 96 59 / 0.22);
+  --hairline-soft: rgb(117 96 59 / 0.12);
+  --scrim: rgb(42 38 34 / 0.5);
 
   /* Per-class accent. Overridden inline inside a class's own context only. */
   --accent: var(--gold);
@@ -32,18 +33,18 @@
   --accent-on-dark: var(--gold-light);
 
   /* ----------------------------------------------------------- typography */
-  --font-display-stack: var(--font-anton), "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-display-stack: var(--font-cormorant), "Cormorant", Georgia, serif;
   --font-serif-stack: var(--font-cormorant), "Cormorant", Georgia, serif;
   --font-sans-stack: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-script-stack: var(--font-script), "Snell Roundhand", cursive;
 
-  --text-hero: min(18vw, 9.5rem);
-  --text-section: clamp(3.5rem, 2.25rem + 4.2vw, 6rem); /* 56–96px */
-  --text-title: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
-  --text-lede: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --text-hero: clamp(3.25rem, 14vw, 5.5rem);
+  --text-section: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem); /* 36–60px */
+  --text-title: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --text-lede: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
   --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem); /* 16–18px */
   --leading-body: 1.6;
-  --tracking-eyebrow: 0.2em;
+  --tracking-eyebrow: 0.14em;
 
   /* --------------------------------------------------------------- motion */
   --ease-expo: cubic-bezier(0.22, 1, 0.36, 1); /* entrances */
@@ -55,13 +56,13 @@
   /* --------------------------------------------------------------- layout */
   --container: 1320px;
   --gutter: clamp(1.5rem, 0.6rem + 3.8vw, 4rem); /* 24px mobile → 64px desktop */
-  --section-y: clamp(4rem, 1.5rem + 9vw, 12.5rem); /* 64px mobile → 200px wide */
+  --section-y: clamp(4rem, 2.5rem + 6vw, 8.5rem); /* 64px mobile → 136px wide */
   --header-h: 4.5rem;
   --action-bar-h: 4rem;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 
-  --radius-xs: 2px;
-  --radius-sm: 4px;
+  --radius-xs: 8px;
+  --radius-sm: 14px;
 
   /* --------------------------------------------------------------- layers */
   --z-content: 1;
@@ -79,7 +80,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --text-hero: min(14vw, 15rem);
+    --text-hero: clamp(4.5rem, 8vw, 7.5rem);
     --header-h: 5.5rem;
   }
 }

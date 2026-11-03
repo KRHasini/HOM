@@ -13,6 +13,8 @@ type GridClass = ClassCardData & { category: ClassCategory; audiences: Audience[
 
 interface ClassGridProps {
   classes: GridClass[];
+  /** Show the category / audience filters (the /classes page); the home grid is unfiltered. */
+  filterable?: boolean;
   labels: {
     filter: string;
     all: string;
@@ -23,7 +25,7 @@ interface ClassGridProps {
 }
 
 /** Filterable grid (category × audience). Cards animate in with a stagger. */
-export function ClassGrid({ classes, labels }: ClassGridProps) {
+export function ClassGrid({ classes, labels, filterable = true }: ClassGridProps) {
   const [category, setCategory] = useState<ClassCategory | null>(null);
   const [audience, setAudience] = useState<Audience | null>(null);
 
@@ -41,6 +43,7 @@ export function ClassGrid({ classes, labels }: ClassGridProps) {
 
   return (
     <div className="flex flex-col gap-12">
+      {filterable ? (
       <div
         role="group"
         aria-label={labels.filter}
@@ -72,15 +75,16 @@ export function ClassGrid({ classes, labels }: ClassGridProps) {
           ))}
         </div>
       </div>
+      ) : null}
 
       <p className="sr-only" aria-live="polite">
         {visible.length} / {classes.length}
       </p>
 
       {visible.length === 0 ? (
-        <p className="font-serif text-lede text-bone/70 italic">{labels.empty}</p>
+        <p className="font-serif text-lede text-muted italic">{labels.empty}</p>
       ) : (
-        <m.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <m.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-12">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((c, i) => (
               <m.li
@@ -94,8 +98,7 @@ export function ClassGrid({ classes, labels }: ClassGridProps) {
               >
                 <ClassCard
                   item={c}
-                  index={classes.indexOf(c)}
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 />
               </m.li>
             ))}

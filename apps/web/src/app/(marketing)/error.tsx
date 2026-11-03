@@ -24,7 +24,7 @@ export default function MarketingError({
       className="grain relative flex min-h-svh flex-col items-center justify-center gap-6 bg-ink px-(--gutter) text-center text-ivory"
     >
       <Eyebrow>{ui.error.eyebrow}</Eyebrow>
-      <h1 className="display text-[clamp(4rem,12vw,9rem)] leading-[0.86]">{ui.error.title}</h1>
+      <h1 className="display text-section">{ui.error.title}</h1>
       <p className="max-w-md font-serif text-lede text-bone/80 italic">{ui.error.text}</p>
       <Button size="lg" onClick={reset} arrow>
         {ui.error.retry}

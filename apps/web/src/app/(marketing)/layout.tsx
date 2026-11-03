@@ -44,7 +44,6 @@ export default async function MarketingLayout({ children }: { children: ReactNod
             email: site.email,
           },
           social: site.social,
-          tagline: site.signature,
         }}
       />
 

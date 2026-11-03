@@ -20,7 +20,7 @@ interface SectionHeadingProps {
   children?: ReactNode;
 }
 
-/** Eyebrow + giant Anton headline (split reveal) + optional serif-italic intro. */
+/** Optional eyebrow, a serif headline (split reveal) and an optional serif-italic intro. */
 export function SectionHeading({
   eyebrow,
   title,
@@ -51,7 +51,7 @@ export function SectionHeading({
         as={as}
         id={id}
         text={title}
-        className={cn("max-w-[18ch] display", size === "section" ? "text-section" : "text-title")}
+        className={cn("max-w-[20ch] display", size === "section" ? "text-section" : "text-title")}
       />
       {intro ? (
         <Reveal delay={0.15}>

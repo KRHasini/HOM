@@ -19,7 +19,7 @@ export function NotFoundView() {
         </IntroRise>
         <IntroText
           text={copy.title}
-          className="display text-[clamp(4rem,14vw,11rem)] leading-[0.86]"
+          className="display text-section"
         />
         <IntroRise delay={300}>
           <p className="max-w-md font-serif text-lede text-bone/80 italic">{copy.text}</p>

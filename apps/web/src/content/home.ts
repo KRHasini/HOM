@@ -44,19 +44,18 @@ export const home = {
   },
   about: {
     eyebrow: "The studio",
-    title: "A house built for every kind of mover",
+    title: "A home for every kind of mover",
     body: [
       // TODO(confirm): placeholder copy
-      "House of Movements is a home for dancers, athletes and first-timers alike — a place where classical tradition and street energy share the same floor.",
-      "Led by founder Vignesh K, every class is built on the same promise: move with intention, express without fear, and transform a little more each week.",
+      "Led by founder Vignesh K, House of Movements is where classical tradition and street energy share one floor — for first-timers and seasoned dancers alike.",
     ],
     link: { label: "Our story", href: "/about" },
   },
   showcase: {
     eyebrow: "Eight disciplines",
-    title: "Find your movement",
+    title: "Our classes",
     intro: "From temple-born classical to street-born grooves — choose the style that moves you.",
-    cta: { label: "View all classes", href: "/classes" },
+    cta: { label: "All classes", href: "/classes" },
     exploreLabel: "Explore",
   },
   pillars: {
@@ -99,17 +98,17 @@ export const home = {
   },
   gallery: {
     eyebrow: "Moments",
-    title: "Inside the movement",
-    cta: { label: "Open the gallery", href: "/gallery" },
+    title: "Moments",
+    cta: { label: "Full gallery", href: "/gallery" },
   },
   testimonials: {
     eyebrow: "Stories",
-    title: "In their words",
+    title: "Kind words",
     cta: { label: "Read more stories", href: "/testimonials" },
   },
   events: {
     eyebrow: "What's on",
-    title: "Events & announcements",
+    title: "Upcoming events",
     cta: { label: "All events", href: "/events" },
     empty: {
       title: "Stay tuned",

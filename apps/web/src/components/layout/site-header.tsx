@@ -25,13 +25,13 @@ const SOLID_AFTER = 40;
 const HIDE_AFTER = 160;
 
 /**
- * Transparent over the hero, a blurred ink bar after scrolling. Hides on scroll down,
+ * Transparent over the home hero, a blurred charcoal bar everywhere else. Hides on scroll down,
  * returns on scroll up.
  */
 export function SiteHeader({ brand, links, cta, menu }: SiteHeaderProps) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
@@ -44,10 +44,12 @@ export function SiteHeader({ brand, links, cta, menu }: SiteHeaderProps) {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    setSolid(latest > SOLID_AFTER);
+    setScrolled(latest > SOLID_AFTER);
     setHidden(latest > HIDE_AFTER && latest > previous && !menuOpen);
   });
 
+  // Only the home hero is a full-bleed video; every other page gets a quiet solid bar.
+  const solid = scrolled || pathname !== "/";
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
@@ -62,8 +64,8 @@ export function SiteHeader({ brand, links, cta, menu }: SiteHeaderProps) {
           "relative transition-[background-color,border-color,backdrop-filter] duration-500 ease-expo",
           "border-b",
           solid
-            ? "border-hairline-soft bg-ink/80 backdrop-blur-xl backdrop-saturate-150"
-            : "border-transparent bg-linear-to-b from-ink/55 to-transparent",
+            ? "border-white/10 bg-ink/90 backdrop-blur-xl"
+            : "border-transparent bg-linear-to-b from-ink/40 to-transparent",
         )}
       >
         <div className="container-hom flex h-(--header-h) items-center justify-between gap-6">

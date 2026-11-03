@@ -2,34 +2,24 @@ import type { Metadata } from "next";
 
 import { ButtonLink } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ContactStrip } from "@/components/sections/contact-strip";
-import { EventCard, EventsEmpty } from "@/components/sections/events/event-card";
-import { FaqList } from "@/components/sections/faq-list";
+import { ClassGrid } from "@/components/sections/classes/class-grid";
+import { EventCard } from "@/components/sections/events/event-card";
 import { AboutTeaser } from "@/components/sections/home/about-teaser";
-import { ClassShowcase } from "@/components/sections/home/class-showcase";
-import { FounderSpotlight } from "@/components/sections/home/founder-spotlight";
 import { GalleryPreview } from "@/components/sections/home/gallery-preview";
 import { Hero } from "@/components/sections/home/hero";
-import { Pillars } from "@/components/sections/home/pillars";
-import { StatsStrip } from "@/components/sections/home/stats-strip";
 import { TrialCta } from "@/components/sections/home/trial-cta";
-import { TrustStrip } from "@/components/sections/home/trust-strip";
-import { MarqueeBand } from "@/components/sections/marquee-band";
 import { Section } from "@/components/sections/section";
 import { TestimonialsCarousel } from "@/components/sections/testimonials-carousel";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
-  getAbout,
   getClasses,
   getEvents,
-  getFaqsByIds,
   getFormsCopy,
   getFounder,
   getGallery,
   getHome,
   getLegal,
   getSite,
-  getStats,
   getTestimonials,
   getUi,
 } from "@/content";
@@ -43,12 +33,15 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata(getSite(), { ...home.seo, path: "/", absoluteTitle: true });
 }
 
+/**
+ * Home: hero → story → classes → moments → kind words → (events) → trial.
+ * Everything else (FAQ, stats, contact details, values) lives on its own page or in the footer.
+ */
 export default async function HomePage() {
   const site = getSite();
   const ui = getUi();
   const forms = getFormsCopy();
   const legal = getLegal();
-  const about = getAbout();
   const [home, classes, founder, gallery, testimonials, events] = await Promise.all([
     getHome(),
     getClasses(),
@@ -57,85 +50,82 @@ export default async function HomePage() {
     getTestimonials(),
     getEvents(),
   ]);
-  const stats = getStats();
   const upcoming = events.upcoming.slice(0, 2);
 
   return (
     <>
-      <Hero {...home.hero} />
-      <TrustStrip items={home.trust.items} />
-      <MarqueeBand items={classes.map((c) => c.name)} label={home.showcase.eyebrow} />
+      <Hero
+        headline={home.hero.headline}
+        primaryCta={home.hero.primaryCta}
+        video={home.hero.video}
+      />
 
       <AboutTeaser
-        {...home.about}
+        title={home.about.title}
+        body={home.about.body[0] ?? ""}
+        link={home.about.link}
         portrait={founder.photo}
         founderName={founder.name}
         founderRole={founder.role}
-        studioImage={about.space.images[0] ?? about.hero.image}
       />
 
-      <Section
-        surface="ink"
-        padded={false}
-        labelledBy="showcase-title"
-        className="pt-(--section-y)"
-      >
-        <div className="container-hom flex flex-col gap-8 pb-16 md:flex-row md:items-end md:justify-between lg:pb-0">
-          <SectionHeading
-            id="showcase-title"
-            eyebrow={home.showcase.eyebrow}
-            title={home.showcase.title}
-            intro={home.showcase.intro}
+      <Section surface="sand" labelledBy="showcase-title">
+        <div className="container-hom flex flex-col gap-12">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <SectionHeading
+              id="showcase-title"
+              title={home.showcase.title}
+              surface="light"
+              size="title"
+            />
+            <ButtonLink
+              href={home.showcase.cta.href}
+              variant="ghost"
+              arrow
+              className="w-fit text-ink"
+            >
+              {home.showcase.cta.label}
+            </ButtonLink>
+          </div>
+          <ClassGrid
+            classes={classes.map((c) => ({
+              slug: c.slug,
+              name: c.name,
+              tagline: c.tagline,
+              href: c.href,
+              cover: c.cover,
+              accent: c.accent,
+              accentContrast: c.accentContrast,
+              accentOnDark: c.accentOnDark,
+              treatment: c.treatment,
+              category: c.category,
+              audiences: c.audiences,
+              meta: classMeta(c, ui.classes),
+            }))}
+            filterable={false}
+            labels={{
+              filter: ui.classes.filterLabel,
+              all: ui.classes.allLabel,
+              empty: ui.classes.emptyState,
+              categories: ui.classes.categoryLabels,
+              audiences: ui.classes.audienceLabels,
+            }}
           />
-          <ButtonLink
-            href={home.showcase.cta.href}
-            variant="ghost"
-            arrow
-            className="w-fit shrink-0 text-gold-light"
-          >
-            {home.showcase.cta.label}
-          </ButtonLink>
         </div>
-        <ClassShowcase
-          exploreLabel={home.showcase.exploreLabel}
-          classes={classes.map((c) => ({
-            slug: c.slug,
-            name: c.name,
-            tagline: c.tagline,
-            summary: c.summary,
-            href: c.href,
-            cover: c.cover,
-            accent: c.accent,
-            accentContrast: c.accentContrast,
-            accentOnDark: c.accentOnDark,
-            treatment: c.treatment,
-            meta: classMeta(c, ui.classes),
-          }))}
-        />
       </Section>
 
-      <Pillars {...home.pillars} />
-
-      <FounderSpotlight
-        eyebrow={home.founder.eyebrow}
-        name={founder.name}
-        quote={home.founder.quote}
-        bio={founder.shortBio}
-        photo={founder.photo}
-        cta={home.founder.cta}
+      <GalleryPreview
+        title={home.gallery.title}
+        cta={home.gallery.cta}
+        items={gallery.items.slice(0, 4)}
       />
 
-      <StatsStrip eyebrow={home.stats.eyebrow} stats={stats} />
-
-      <GalleryPreview {...home.gallery} items={gallery.items.slice(0, 8)} />
-
       {testimonials.length > 0 ? (
-        <Section surface="ivory" labelledBy="testimonials-title">
-          <div className="container-hom grid gap-12 lg:grid-cols-12">
+        <Section surface="sand" labelledBy="testimonials-title">
+          <div className="container-hom grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <SectionHeading
                 id="testimonials-title"
-                eyebrow={home.testimonials.eyebrow}
                 title={home.testimonials.title}
                 surface="light"
                 size="title"
@@ -155,26 +145,26 @@ export default async function HomePage() {
         </Section>
       ) : null}
 
-      <Section surface="ink" labelledBy="events-title">
-        <div className="container-hom flex flex-col gap-12">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <SectionHeading
-              id="events-title"
-              eyebrow={home.events.eyebrow}
-              title={home.events.title}
-            />
-            {upcoming.length > 0 ? (
+      {/* No placeholder when nothing is scheduled — the section simply doesn't exist. */}
+      {upcoming.length > 0 ? (
+        <Section surface="ivory" labelledBy="events-title">
+          <div className="container-hom flex flex-col gap-12">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <SectionHeading
+                id="events-title"
+                title={home.events.title}
+                surface="light"
+                size="title"
+              />
               <ButtonLink
                 href={home.events.cta.href}
                 variant="ghost"
                 arrow
-                className="w-fit text-gold-light"
+                className="w-fit text-ink"
               >
                 {home.events.cta.label}
               </ButtonLink>
-            ) : null}
-          </div>
-          {upcoming.length > 0 ? (
+            </div>
             <div className="flex flex-col gap-6">
               {upcoming.map((event) => (
                 <EventCard
@@ -190,26 +180,12 @@ export default async function HomePage() {
               ))}
               <JsonLd data={upcoming.map((e) => eventJsonLd(site, e))} />
             </div>
-          ) : (
-            <EventsEmpty
-              title={home.events.empty.title}
-              text={home.events.empty.text}
-              cta={
-                site.social.instagram
-                  ? { label: ui.events.followCta, href: site.social.instagram }
-                  : undefined
-              }
-            />
-          )}
-        </div>
-      </Section>
+          </div>
+        </Section>
+      ) : null}
 
       <TrialCta
-        eyebrow={home.trial.eyebrow}
         title={home.trial.title}
-        intro={home.trial.intro}
-        formTitle={home.trial.formTitle}
-        image={about.hero.image}
         form={{
           classes: classes.map((c) => ({ slug: c.slug, name: c.name })),
           copy: {
@@ -233,28 +209,6 @@ export default async function HomePage() {
           privacyHref: "/privacy",
         }}
       />
-
-      <Section surface="ivory" labelledBy="faq-preview-title">
-        <div className="container-hom grid gap-12 lg:grid-cols-12">
-          <div className="flex flex-col gap-8 lg:col-span-5">
-            <SectionHeading
-              id="faq-preview-title"
-              eyebrow={home.faq.eyebrow}
-              title={home.faq.title}
-              surface="light"
-              size="title"
-            />
-            <ButtonLink href={home.faq.cta.href} variant="ghost" arrow className="w-fit text-ink">
-              {home.faq.cta.label}
-            </ButtonLink>
-          </div>
-          <div className="lg:col-span-7">
-            <FaqList items={getFaqsByIds(home.faq.ids)} />
-          </div>
-        </div>
-      </Section>
-
-      <ContactStrip title={home.contact.title} text={home.contact.text} />
     </>
   );
 }
